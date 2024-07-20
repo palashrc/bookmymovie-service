@@ -9,3 +9,7 @@ server:
 logging:
   level:
     root: INFO
+
+seat:
+  book:
+    limit: 10

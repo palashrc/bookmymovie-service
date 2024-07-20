@@ -1,10 +1,10 @@
 spring:
   application:
-    name: bookmymovie-orchestrator
+    name: bookmymovie-notification
     version: 1.0.0-SNAPSHOT
 
 server:
-  port: 8081
+  port: 8087
 
 logging:
   level:

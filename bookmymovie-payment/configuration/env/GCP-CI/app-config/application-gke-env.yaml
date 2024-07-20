@@ -1,22 +1,11 @@
-# due to helm issue with the binary files (described here: https://github.com/helm/helm/issues/9550)
-# if you want to use from any reason the binary config files you have to encode them by using base64 algorithm
-# and be aware that you have to decode them by yourself after the deployment
+spring:
+  application:
+    name: bookmymovie-payment
+    version: 1.0.0-SNAPSHOT
+
+server:
+  port: 8086
 
 logging:
   level:
     root: INFO
-
-# GCP API for metrics and traces does not work in TMP namespaces, lack of Workload identity
-management:
-  metrics:
-    export:
-      stackdriver:
-        enabled: false
-
-spring:
-  cloud:
-    gcp:
-      core:
-        enabled: false
-      trace:
-        enabled: false

@@ -1,15 +1,11 @@
 spring:
   application:
-    name: poc-sell-orchestrator
+    name: bookmymovie-auth
     version: 1.0.0-SNAPSHOT
 
 server:
-  port: 8081
+  port: 8089
 
 logging:
   level:
     root: INFO
-
-pocsellmetrics:
-  tag:
-    env: DEV

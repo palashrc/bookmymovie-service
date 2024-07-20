@@ -1,7 +1,15 @@
-# due to helm issue with the binary files (described here: https://github.com/helm/helm/issues/9550)
-# if you want to use from any reason the binary config files you have to encode them by using base64 algorithm
-# and be aware that you have to decode them by yourself after the deployment
+spring:
+  application:
+    name: bookmymovie-orchestrator
+    version: 1.0.0-SNAPSHOT
+
+server:
+  port: 8081
 
 logging:
   level:
     root: INFO
+
+seat:
+  book:
+    limit: 10
