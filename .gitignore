@@ -1,0 +1,25 @@
+### ALL ###
+*.class
+*.jar
+*.classpath
+*.project
+target/
+bin/
+.settings/
+logs/
+*.log*
+.metadata/*
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/

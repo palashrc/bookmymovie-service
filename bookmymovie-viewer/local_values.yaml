@@ -1,0 +1,19 @@
+# Default values for helm.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+appName: bookmymovie-viewer
+color: local
+env: dev
+
+springProfilesActive: logs-stdout-json-gke,secrets   # 'logs-stdout-json-gke' for logs format, no 'gke-env','gke-common'
+initReplicas: 1
+autoscaling:
+  minReplicas: 1
+  maxReplicas: 1
+# HPA works on average utilization over all PODs to the request.
+  cpuAverageUtilization: 75
+# It requires flag -XX:MaxRAMPercentage=95 for JVM
+  memoryAverageUtilization: 75
+
+timestamp: local

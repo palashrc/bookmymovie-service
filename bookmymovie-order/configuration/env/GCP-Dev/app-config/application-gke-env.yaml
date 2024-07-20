@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: poc-sell-orchestrator
+    version: 1.0.0-SNAPSHOT
+
+server:
+  port: 8081
+
+logging:
+  level:
+    root: INFO
+
+pocsellmetrics:
+  tag:
+    env: DEV

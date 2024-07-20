@@ -1,0 +1,4 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: poc-sell-orchestrator-namespace #Namespace is created Microservice wise, not env wise.

@@ -1,0 +1,1 @@
+SET BUILD_HOME=F:\Workspace-IntelliJ-POC\bookmymovie-service

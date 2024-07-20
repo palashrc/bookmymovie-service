@@ -1,0 +1,30 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+build:
+  artifacts:
+  - image: bookmymovie-notification
+  tagPolicy:
+    dateTime:
+      format: 2006-01-02_15-04-05.999_MST
+      timezone: UTC
+deploy:
+  helm:
+    releases:
+    - name: bookmymovie-notification
+      chartPath: configuration/files/helm
+      namespace: bookmymovie
+      valuesFiles:
+      - local_values.yaml
+      artifactOverrides:
+        image: bookmymovie-notification
+profiles:
+- name: cloudbuild
+  build:
+    googleCloudBuild: {}
+- name: jib
+  build:
+    artifacts:
+    - image: gke-basic-image-archetype
+      jib:
+        args:
+        - -Dmaven.test.skip=true
