@@ -1,4 +1,4 @@
-package com.bookmymovie.auth.controllers;
+package com.bookmymovie.theater.controllers;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/smoke")
 public class SmokeTestController {
   private static final Logger log = (Logger) LoggerFactory.getLogger(SmokeTestController.class);
 
-  @RequestMapping(path = "/smoke")
+  @RequestMapping(path = "/")
   public ResponseEntity<String> smokeTest() {
     try {
       log.info("Running smoke tests...");

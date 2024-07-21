@@ -11,9 +11,11 @@ spring:
   cloud:
     gcp:
       core:
-        enabled: false
+        enabled: true
       datastore:
-        enabled: false
+        enabled: true
+        namespace: bookmymovie
+        project-id: bookmymovie-db
         emulator:
           enabled: true
           namespace: bookmymovie
