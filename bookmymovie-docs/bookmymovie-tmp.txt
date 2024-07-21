@@ -1,0 +1,9 @@
+https://github.com/palashrc/bookmymovie-service
+
+Orchestrator Microservice:
+Smoke test: http://localhost:8081/smoke
+
+Viewer Microservice:
+Smoke test: http://localhost:8084/smoke
+gcloud beta emulators datastore start --project=bookmymovie-db --host-port=0.0.0.0:9084 --data-dir=F:\Program-Files\Firestore-Emulator-Data-Dir
+Datastore ping: http://localhost:9084/
