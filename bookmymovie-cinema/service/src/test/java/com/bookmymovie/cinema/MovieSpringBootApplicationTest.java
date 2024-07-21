@@ -1,4 +1,4 @@
-package com.bookmymovie.auth;
+package com.bookmymovie.cinema;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

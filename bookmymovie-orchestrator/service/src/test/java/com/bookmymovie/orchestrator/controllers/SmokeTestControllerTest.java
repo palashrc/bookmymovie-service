@@ -1,4 +1,4 @@
-package com.bookmymovie.auth.controllers;
+package com.bookmymovie.orchestrator.controllers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

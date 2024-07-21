@@ -1,8 +1,8 @@
-package com.bookmymovie.auth.controllers;
+package com.bookmymovie.cinema.controllers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.bookmymovie.movie.controllers.SmokeTestController;
+import com.bookmymovie.cinema.controllers.SmokeTestController;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

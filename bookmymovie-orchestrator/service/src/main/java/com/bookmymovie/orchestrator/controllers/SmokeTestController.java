@@ -1,4 +1,4 @@
-package com.bookmymovie.auth.controllers;
+package com.bookmymovie.orchestrator.controllers;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 

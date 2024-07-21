@@ -1,7 +1,10 @@
 https://github.com/palashrc/bookmymovie-service
 
 Orchestrator Microservice:
+gcloud beta emulators datastore start --project=bookmymovie-db --host-port=0.0.0.0:9081 --data-dir=F:\Program-Files\Firestore-Emulator-Data-Dir
+Datastore ping: http://localhost:9081/
 Smoke test: http://localhost:8081/smoke
+Swagger: http://localhost:8081/swagger-ui/index.html
 
 Theater Microservice:
 gcloud beta emulators datastore start --project=bookmymovie-db --host-port=0.0.0.0:9082 --data-dir=F:\Program-Files\Firestore-Emulator-Data-Dir
@@ -9,8 +12,38 @@ Datastore ping: http://localhost:9082/
 Smoke test: http://localhost:8082/smoke/
 Swagger: http://localhost:8082/swagger-ui/index.html
 
+Movie Microservice:
+gcloud beta emulators datastore start --project=bookmymovie-db --host-port=0.0.0.0:9083 --data-dir=F:\Program-Files\Firestore-Emulator-Data-Dir
+Datastore ping: http://localhost:9083/
+Smoke test: http://localhost:8083/smoke/
+Swagger: http://localhost:8083/swagger-ui/index.html
+
 Viewer Microservice:
 gcloud beta emulators datastore start --project=bookmymovie-db --host-port=0.0.0.0:9084 --data-dir=F:\Program-Files\Firestore-Emulator-Data-Dir
 Datastore ping: http://localhost:9084/
 Smoke test: http://localhost:8084/smoke/
 Swagger: http://localhost:8084/swagger-ui/index.html
+
+Order Microservice:
+gcloud beta emulators datastore start --project=bookmymovie-db --host-port=0.0.0.0:9085 --data-dir=F:\Program-Files\Firestore-Emulator-Data-Dir
+Datastore ping: http://localhost:9085/
+Smoke test: http://localhost:8085/smoke/
+Swagger: http://localhost:8085/swagger-ui/index.html
+
+Payment Microservice:
+gcloud beta emulators datastore start --project=bookmymovie-db --host-port=0.0.0.0:9086 --data-dir=F:\Program-Files\Firestore-Emulator-Data-Dir
+Datastore ping: http://localhost:9086/
+Smoke test: http://localhost:8086/smoke/
+Swagger: http://localhost:8086/swagger-ui/index.html
+
+Notification Microservice:
+gcloud beta emulators datastore start --project=bookmymovie-db --host-port=0.0.0.0:9087 --data-dir=F:\Program-Files\Firestore-Emulator-Data-Dir
+Datastore ping: http://localhost:9087/
+Smoke test: http://localhost:8087/smoke/
+Swagger: http://localhost:8087/swagger-ui/index.html
+
+Utility Microservice:
+gcloud beta emulators datastore start --project=bookmymovie-db --host-port=0.0.0.0:9088 --data-dir=F:\Program-Files\Firestore-Emulator-Data-Dir
+Datastore ping: http://localhost:9088/
+Smoke test: http://localhost:8088/smoke/
+Swagger: http://localhost:8088/swagger-ui/index.html
