@@ -1,12 +1,20 @@
 package com.bookmymovie.theater.service;
 
+import com.bookmymovie.core.error.CoversionException;
+import com.bookmymovie.core.error.RecordNotFoundException;
+import com.bookmymovie.theater.helper.Constants;
+import com.bookmymovie.theater.helper.StatusMapper;
+import com.bookmymovie.theater.converter.CityConverter;
 import com.bookmymovie.theater.model.City;
+import com.bookmymovie.theater.model.CityRequest;
+import com.bookmymovie.theater.model.CityResponse;
 import com.bookmymovie.theater.repository.CityRepository;
+import com.google.cloud.datastore.DatastoreException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,43 +23,101 @@ import java.util.stream.Collectors;
 public class CityService {
 
     @Autowired
+    private CityConverter cityConverter;
+
+    @Autowired
     private CityRepository cityRepository;
 
-    public void saveCity(City city) {
-        com.bookmymovie.theater.entity.City cityEntity = new com.bookmymovie.theater.entity.City();
-        cityEntity.setCityName(city.getCityName());
-        cityEntity.setCityCode(city.getCityCode());
-        cityEntity.setOperational(city.getOperational());
-        cityRepository.save(cityEntity);
-    }
+    @Autowired
+    private StatusMapper StatusMapper;
 
-    public List<City> getCity() {
-        Iterable<com.bookmymovie.theater.entity.City> cityIterable = cityRepository.findAll();
-        List<com.bookmymovie.theater.entity.City> cityList = Streamable.of(cityIterable).toList();
-        List<City> cityListRes = cityList.stream().map(City::new).collect(Collectors.toList());
-        return Streamable.of(cityListRes).toList();
-    }
-
-    public City getCityById(Long id) {
-        City city = new City();
-        if (cityRepository.findById(id).isPresent()) {
-            com.bookmymovie.theater.entity.City cityRes = cityRepository.findById(id).get();
-            city.setCityId(cityRes.getCityId());
-            city.setCityName(cityRes.getCityName());
-            city.setCityCode(cityRes.getCityCode());
-            city.setOperational(cityRes.getOperational());
+    public CityResponse saveCity(CityRequest cityRequest) {
+        CityResponse cityResponse = new CityResponse();
+        try {
+            com.bookmymovie.theater.entity.City cityEntity = cityConverter.convertModelToEntity(cityRequest.getCity());
+            com.bookmymovie.theater.entity.City cityEntityRes = cityRepository.save(cityEntity);
+            cityResponse.getCities().add(cityConverter.convertEntityToModel(cityEntityRes));
+            StatusMapper.mapSuccessCodeMsg(cityResponse);
+        } catch(CoversionException ex) {
+            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
+        } catch(DatastoreException ex) {
+            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+        } catch(Exception ex) {
+            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
         }
-        return city;
+        return cityResponse;
     }
 
-    public List<City> getCityByName(String name) {
-        List<City> cityListRes = new ArrayList<>();
-        if (cityRepository.findByCityName(name).isPresent()) {
-            List<com.bookmymovie.theater.entity.City> cityList = cityRepository.findByCityName(name).get();
+    public CityResponse getCity() {
+        CityResponse cityResponse = new CityResponse();
+        try {
+            Iterable<com.bookmymovie.theater.entity.City> cityIterable = cityRepository.findAll();
+            List<com.bookmymovie.theater.entity.City> cityList = Streamable.of(cityIterable).toList();
+            List<City> cityListRes = cityList.stream().map(City::new).toList();
+            cityResponse.getCities().addAll(cityListRes);
+            StatusMapper.mapSuccessCodeMsg(cityResponse);
+        } catch(DatastoreException ex) {
+            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+        } catch(Exception ex) {
+            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+        }
+        return cityResponse;
+    }
+
+    public CityResponse getCityById(CityRequest cityRequest) {
+        CityResponse cityResponse = new CityResponse();
+        try {
+            com.bookmymovie.theater.entity.City cityRes = cityRepository.findById(cityRequest.getCity().getCityId()).get();
+            City city = cityConverter.convertEntityToModel(cityRes);
+            cityResponse.getCities().add(city);
+            StatusMapper.mapSuccessCodeMsg(cityResponse);
+        } catch(CoversionException ex) {
+            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
+        } catch(DatastoreException ex) {
+            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+        } catch(Exception ex) {
+            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+        }
+        return cityResponse;
+    }
+
+
+    public CityResponse getCityByName(CityRequest cityRequest) {
+        CityResponse cityResponse = new CityResponse();
+        try {
+            List<com.bookmymovie.theater.entity.City> cityList = cityRepository.findByCityName(cityRequest.getCity().getCityName()).get();
             if (!cityList.isEmpty()) {
-                cityListRes = cityList.stream().map(City::new).collect(Collectors.toList());
+                cityResponse.setCities(cityList.stream().map(City::new).collect(Collectors.toList()));
+                StatusMapper.mapSuccessCodeMsg(cityResponse);
             }
+        } catch(DatastoreException ex) {
+            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+        } catch(Exception ex) {
+            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
         }
-        return cityListRes;
+        return cityResponse;
+    }
+
+    public CityResponse updateCityOperational(CityRequest cityRequest) {
+        CityResponse cityResponse = new CityResponse();
+        try {
+            com.bookmymovie.theater.entity.City cityRes = cityRepository.findById(cityRequest.getCity().getCityId()).get();
+            if(ObjectUtils.isEmpty(cityRes)) {
+                throw new RecordNotFoundException();
+            }
+            cityRes.setOperational(cityRequest.getCity().getOperational());
+            com.bookmymovie.theater.entity.City cityResUpdated = cityRepository.save(cityRes);
+            cityResponse.getCities().add(cityConverter.convertEntityToModel(cityResUpdated));
+            StatusMapper.mapSuccessCodeMsg(cityResponse);
+        } catch(RecordNotFoundException ex) {
+            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.RECORD_NOT_FOUND_EXCEPTION_TYPE));
+        } catch(CoversionException ex) {
+            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
+        } catch(DatastoreException ex) {
+            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+        } catch(Exception ex) {
+            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+        }
+        return cityResponse;
     }
 }

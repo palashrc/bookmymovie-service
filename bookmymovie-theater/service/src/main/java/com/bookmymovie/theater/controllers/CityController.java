@@ -1,12 +1,11 @@
 package com.bookmymovie.theater.controllers;
 
-import com.bookmymovie.theater.model.City;
+import com.bookmymovie.theater.model.CityRequest;
+import com.bookmymovie.theater.model.CityResponse;
 import com.bookmymovie.theater.service.CityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/city")
@@ -17,25 +16,23 @@ public class CityController {
 
     @PostMapping("/city-add")
     @ResponseBody
-    public void addCity(@RequestBody City city) {
-        cityService.saveCity(city);
+    public CityResponse addCity(@RequestBody CityRequest cityRequest) {
+        return cityService.saveCity(cityRequest);
     }
 
     @GetMapping("/city-all")
     @ResponseBody
-    public List<City> getCity() {
-        return cityService.getCity();
-    }
+    public CityResponse getCity() { return cityService.getCity(); }
 
-    @GetMapping("/city-by-id/{id}")
+    @PostMapping("/city-by-id")
     @ResponseBody
-    public City getCityById(@PathVariable Long id) {
-        return cityService.getCityById(id);
-    }
+    public CityResponse getCityById(@RequestBody CityRequest cityRequest) { return cityService.getCityById(cityRequest); }
 
-    @GetMapping("/city-by-name/{name}")
+    @PostMapping("/city-by-name")
     @ResponseBody
-    public List<City> getCityByName(@PathVariable String name) {
-        return cityService.getCityByName(name);
-    }
+    public CityResponse getCityByName(@RequestBody CityRequest cityRequest) { return cityService.getCityByName(cityRequest); }
+
+    @PostMapping("/city-operation-configure")
+    @ResponseBody
+    public CityResponse updateCityOperational(@RequestBody CityRequest cityRequest) { return cityService.updateCityOperational(cityRequest); }
 }
