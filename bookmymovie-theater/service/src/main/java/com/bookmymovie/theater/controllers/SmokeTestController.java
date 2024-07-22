@@ -1,17 +1,15 @@
 package com.bookmymovie.theater.controllers;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-
-import ch.qos.logback.classic.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/smoke")
+@Slf4j
 public class SmokeTestController {
-  private static final Logger log = (Logger) LoggerFactory.getLogger(SmokeTestController.class);
 
   @RequestMapping(path = "/")
   public ResponseEntity<String> smokeTest() {

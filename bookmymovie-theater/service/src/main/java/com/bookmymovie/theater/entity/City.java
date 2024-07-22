@@ -28,4 +28,8 @@ public class City {
     @JsonProperty("cityCode")
     @Field(name = "CityCode")
     private String cityCode;
+
+    @JsonProperty("operational")
+    @Field(name = "Operational")
+    private Boolean operational;
 }

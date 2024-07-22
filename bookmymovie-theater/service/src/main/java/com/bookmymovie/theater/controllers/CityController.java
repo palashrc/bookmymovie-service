@@ -35,7 +35,7 @@ public class CityController {
 
     @GetMapping("/city-by-name/{name}")
     @ResponseBody
-    public City getCityByName(@PathVariable String name) {
+    public List<City> getCityByName(@PathVariable String name) {
         return cityService.getCityByName(name);
     }
 }
