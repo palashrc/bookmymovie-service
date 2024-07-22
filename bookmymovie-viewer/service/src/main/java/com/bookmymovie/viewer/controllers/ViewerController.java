@@ -1,6 +1,7 @@
 package com.bookmymovie.viewer.controllers;
 
-import com.bookmymovie.viewer.model.Viewer;
+import com.bookmymovie.viewer.model.ViewerRequest;
+import com.bookmymovie.viewer.model.ViewerResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +16,9 @@ public class ViewerController {
 
     @PostMapping("/viewer-add")
     @ResponseBody
-    public void addViewer(@RequestBody Viewer viewer) {
-        viewerService.saveViewer(viewer);
-    }
+    public ViewerResponse addViewer(@RequestBody ViewerRequest viewerRequest) { return viewerService.saveViewer(viewerRequest); }
 
-    @GetMapping("/viewer-by-mobile/{mobile}")
+    @PostMapping("/viewer-by-mobile")
     @ResponseBody
-    public Viewer getViewerByMobile(@PathVariable String mobile) {
-        return viewerService.getViewerByMobile(mobile);
-    }
+    public ViewerResponse getViewerByMobile(@RequestBody ViewerRequest viewerRequest) { return viewerService.getViewerByMobile(viewerRequest); }
 }

@@ -29,7 +29,7 @@ public class CityService {
     private CityRepository cityRepository;
 
     @Autowired
-    private StatusMapper StatusMapper;
+    private StatusMapper statusMapper;
 
     public CityResponse saveCity(CityRequest cityRequest) {
         CityResponse cityResponse = new CityResponse();
@@ -37,13 +37,13 @@ public class CityService {
             com.bookmymovie.theater.entity.City cityEntity = cityConverter.convertModelToEntity(cityRequest.getCity());
             com.bookmymovie.theater.entity.City cityEntityRes = cityRepository.save(cityEntity);
             cityResponse.getCities().add(cityConverter.convertEntityToModel(cityEntityRes));
-            StatusMapper.mapSuccessCodeMsg(cityResponse);
+            statusMapper.mapSuccessCodeMsg(cityResponse);
         } catch(CoversionException ex) {
-            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
         } catch(DatastoreException ex) {
-            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
         }
         return cityResponse;
     }
@@ -55,11 +55,11 @@ public class CityService {
             List<com.bookmymovie.theater.entity.City> cityList = Streamable.of(cityIterable).toList();
             List<City> cityListRes = cityList.stream().map(City::new).toList();
             cityResponse.getCities().addAll(cityListRes);
-            StatusMapper.mapSuccessCodeMsg(cityResponse);
+            statusMapper.mapSuccessCodeMsg(cityResponse);
         } catch(DatastoreException ex) {
-            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
         }
         return cityResponse;
     }
@@ -70,13 +70,13 @@ public class CityService {
             com.bookmymovie.theater.entity.City cityRes = cityRepository.findById(cityRequest.getCity().getCityId()).get();
             City city = cityConverter.convertEntityToModel(cityRes);
             cityResponse.getCities().add(city);
-            StatusMapper.mapSuccessCodeMsg(cityResponse);
+            statusMapper.mapSuccessCodeMsg(cityResponse);
         } catch(CoversionException ex) {
-            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
         } catch(DatastoreException ex) {
-            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
         }
         return cityResponse;
     }
@@ -88,12 +88,12 @@ public class CityService {
             List<com.bookmymovie.theater.entity.City> cityList = cityRepository.findByCityName(cityRequest.getCity().getCityName()).get();
             if (!cityList.isEmpty()) {
                 cityResponse.setCities(cityList.stream().map(City::new).collect(Collectors.toList()));
-                StatusMapper.mapSuccessCodeMsg(cityResponse);
+                statusMapper.mapSuccessCodeMsg(cityResponse);
             }
         } catch(DatastoreException ex) {
-            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
         }
         return cityResponse;
     }
@@ -108,15 +108,15 @@ public class CityService {
             cityRes.setOperational(cityRequest.getCity().getOperational());
             com.bookmymovie.theater.entity.City cityResUpdated = cityRepository.save(cityRes);
             cityResponse.getCities().add(cityConverter.convertEntityToModel(cityResUpdated));
-            StatusMapper.mapSuccessCodeMsg(cityResponse);
+            statusMapper.mapSuccessCodeMsg(cityResponse);
         } catch(RecordNotFoundException ex) {
-            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.RECORD_NOT_FOUND_EXCEPTION_TYPE));
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.RECORD_NOT_FOUND_EXCEPTION_TYPE));
         } catch(CoversionException ex) {
-            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
         } catch(DatastoreException ex) {
-            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            cityResponse.getErrors().add(StatusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
         }
         return cityResponse;
     }
