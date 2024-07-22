@@ -3,6 +3,7 @@ package com.bookmymovie.theater.helper;
 import com.bookmymovie.core.error.Error;
 import com.bookmymovie.theater.model.CityResponse;
 import com.bookmymovie.theater.model.ScreenResponse;
+import com.bookmymovie.theater.model.SeatResponse;
 import com.bookmymovie.theater.model.TheaterResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,6 +41,11 @@ public class StatusMapper {
     public void mapSuccessCodeMsg(ScreenResponse screenResponse) {
         screenResponse.setSuccessCode(successCode);
         screenResponse.setSuccessMessage(successMessage);
+    }
+
+    public void mapSuccessCodeMsg(SeatResponse seatResponse) {
+        seatResponse.setSuccessCode(successCode);
+        seatResponse.setSuccessMessage(successMessage);
     }
 
     public Error mapErrorCodeMsg(String exceptionType) {

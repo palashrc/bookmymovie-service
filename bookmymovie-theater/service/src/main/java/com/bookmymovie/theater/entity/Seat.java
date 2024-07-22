@@ -21,9 +21,9 @@ public class Seat {
     @Field(name = "SeatId")
     private Long seatId;
 
-    @JsonProperty("theaterId")
-    @Field(name = "TheaterId")
-    private Long theaterId;
+    @JsonProperty("screenId")
+    @Field(name = "ScreenId")
+    private Long screenId;
 
     @JsonProperty("seatType")
     @Field(name = "SeatType")
