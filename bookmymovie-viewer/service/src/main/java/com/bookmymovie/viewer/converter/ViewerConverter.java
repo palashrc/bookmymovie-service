@@ -27,6 +27,7 @@ public class ViewerConverter {
         viewerEntity.setCity(viewerModel.getCity());
         viewerEntity.setAddressLine(viewerModel.getAddressLine());
         viewerEntity.setPinCode(viewerModel.getPinCode());
+        viewerEntity.setProfileActive(viewerModel.getProfileActive());
         return viewerEntity;
     }
 
@@ -48,6 +49,7 @@ public class ViewerConverter {
         viewerModel.setCity(viewerEntity.getCity());
         viewerModel.setAddressLine(viewerEntity.getAddressLine());
         viewerModel.setPinCode(viewerEntity.getPinCode());
+        viewerModel.setProfileActive(viewerEntity.getProfileActive());
         return viewerModel;
     }
 }

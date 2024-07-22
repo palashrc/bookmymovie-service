@@ -64,4 +64,8 @@ public class Viewer {
     @JsonProperty("pinCode")
     @Field(name = "PinCode")
     private String pinCode;
+
+    @JsonProperty("profileActive")
+    @Field(name = "ProfileActive")
+    private Boolean profileActive;
 }

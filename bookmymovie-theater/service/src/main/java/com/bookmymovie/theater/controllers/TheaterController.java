@@ -17,7 +17,7 @@ public class TheaterController {
 
     @PostMapping("/theater-add")
     @ResponseBody
-    public TheaterResponse addTheater(@RequestBody TheaterRequest theaterRequest) { return theaterService.saveCity(theaterRequest); }
+    public TheaterResponse addTheater(@RequestBody TheaterRequest theaterRequest) { return theaterService.saveTheater(theaterRequest); }
 
     @GetMapping("/theater-all")
     @ResponseBody

@@ -34,4 +34,6 @@ public class Viewer {
     private String addressLine;
 
     private String pinCode;
+
+    private Boolean profileActive;
 }

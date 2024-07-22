@@ -28,7 +28,7 @@ public class TheaterService {
     @Autowired
     private StatusMapper statusMapper;
 
-    public TheaterResponse saveCity(TheaterRequest theaterRequest) {
+    public TheaterResponse saveTheater(TheaterRequest theaterRequest) {
         TheaterResponse theaterResponse = new TheaterResponse();
         try {
             com.bookmymovie.theater.entity.Theater theaterEntity = theaterConverter.convertModelToEntity(theaterRequest.getTheater());
