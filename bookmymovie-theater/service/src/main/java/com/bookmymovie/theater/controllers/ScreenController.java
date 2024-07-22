@@ -18,4 +18,8 @@ public class ScreenController {
     @PostMapping("/screen-add")
     @ResponseBody
     public ScreenResponse addScreen(@RequestBody ScreenRequest screenRequest) { return screenService.saveScreen(screenRequest); }
+
+    @PostMapping("/screen-by-id")
+    @ResponseBody
+    public ScreenResponse getScreenById(@RequestBody ScreenRequest screenRequest) { return screenService.getScreenById(screenRequest); }
 }

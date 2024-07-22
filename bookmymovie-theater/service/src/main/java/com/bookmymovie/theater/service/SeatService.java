@@ -25,7 +25,7 @@ public class SeatService {
     @Autowired
     private StatusMapper statusMapper;
 
-    public SeatResponse saveSeat(SeatRequest seatRequest) {
+    public SeatResponse createSeats(SeatRequest seatRequest) {
         SeatResponse seatResponse = new SeatResponse();
         try {
             com.bookmymovie.theater.entity.Seat seatEntity = seatConverter.convertModelToEntity(seatRequest.getSeat());

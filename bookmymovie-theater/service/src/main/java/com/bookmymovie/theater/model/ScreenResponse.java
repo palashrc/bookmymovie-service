@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ScreenResponse {
 
-    private List<Screen> theaters = new ArrayList<>();
+    private List<Screen> screens = new ArrayList<>();
 
     private String successCode;
 

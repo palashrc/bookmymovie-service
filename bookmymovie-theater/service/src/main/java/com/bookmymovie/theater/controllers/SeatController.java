@@ -15,7 +15,7 @@ public class SeatController {
     @Autowired
     private SeatService seatService;
 
-    @PostMapping("/seat-add")
+    @PostMapping("/seats-load")
     @ResponseBody
-    public SeatResponse addSeat(@RequestBody SeatRequest seatRequest) { return seatService.saveSeat(seatRequest); }
+    public SeatResponse createSeats(@RequestBody SeatRequest seatRequest) { return seatService.createSeats(seatRequest); }
 }
