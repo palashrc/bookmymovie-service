@@ -25,17 +25,17 @@ public class Seat {
     @Field(name = "ScreenId")
     private Long screenId;
 
+    @JsonProperty("seatNumber")
+    @Field(name = "SeatNumber")
+    private String seatNumber;
+
     @JsonProperty("seatType")
     @Field(name = "SeatType")
     private String seatType;
 
-    @JsonProperty("seatRow")
-    @Field(name = "SeatRow")
-    private String seatRow;
-
-    @JsonProperty("seatNumber")
-    @Field(name = "SeatNumber")
-    private String seatNumber;
+    @JsonProperty("seatPrice")
+    @Field(name = "SeatPrice")
+    private String seatPrice;
 
     @JsonProperty("operational")
     @Field(name = "Operational")

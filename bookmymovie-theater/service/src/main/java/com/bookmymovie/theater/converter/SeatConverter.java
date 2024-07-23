@@ -17,9 +17,9 @@ public class SeatConverter {
         }
         seatEntity.setSeatId(seatModel.getSeatId());
         seatEntity.setScreenId(seatModel.getScreenId());
-        seatEntity.setSeatType(seatModel.getSeatType());
-        seatEntity.setSeatRow(seatModel.getSeatRow());
         seatEntity.setSeatNumber(seatModel.getSeatNumber());
+        seatEntity.setSeatType(seatModel.getSeatType());
+        seatEntity.setSeatPrice(seatModel.getSeatPrice());
         seatEntity.setOperational(seatModel.getOperational());
         return seatEntity;
     }
@@ -32,9 +32,9 @@ public class SeatConverter {
         }
         seatModel.setSeatId(seatEntity.getSeatId());
         seatModel.setScreenId(seatEntity.getScreenId());
-        seatModel.setSeatType(seatEntity.getSeatType());
-        seatModel.setSeatRow(seatEntity.getSeatRow());
         seatModel.setSeatNumber(seatEntity.getSeatNumber());
+        seatModel.setSeatType(seatEntity.getSeatType());
+        seatModel.setSeatPrice(seatEntity.getSeatPrice());
         seatModel.setOperational(seatEntity.getOperational());
         return seatModel;
     }
