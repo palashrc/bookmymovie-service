@@ -1,6 +1,7 @@
 package com.bookmymovie.cinema.helper;
 
 import com.bookmymovie.cinema.model.MovieResponse;
+import com.bookmymovie.cinema.model.MovieShowResponse;
 import com.bookmymovie.core.error.Error;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +29,11 @@ public class StatusMapper {
     public void mapSuccessCodeMsg(MovieResponse movieResponse) {
         movieResponse.setSuccessCode(successCode);
         movieResponse.setSuccessMessage(successMessage);
+    }
+
+    public void mapSuccessCodeMsg(MovieShowResponse movieShowResponse) {
+        movieShowResponse.setSuccessCode(successCode);
+        movieShowResponse.setSuccessMessage(successMessage);
     }
 
     public Error mapErrorCodeMsg(String exceptionType) {
