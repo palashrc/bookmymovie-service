@@ -31,6 +31,10 @@ public class Screen {
     @Field(name = "ScreenName")
     private String screenName;
 
+    @JsonProperty("showTimes")
+    @Field(name = "ShowTimes")
+    private List<String> showTimes;
+
     @JsonProperty("totalRows")
     @Field(name = "TotalRows")
     private Integer totalRows;

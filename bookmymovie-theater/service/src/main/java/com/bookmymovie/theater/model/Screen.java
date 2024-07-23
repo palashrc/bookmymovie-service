@@ -19,6 +19,8 @@ public class Screen {
 
     private String screenName;
 
+    private List<String> showTimes;
+
     private Integer totalRows;
 
     private Integer numberOfSeatsInEachRow;

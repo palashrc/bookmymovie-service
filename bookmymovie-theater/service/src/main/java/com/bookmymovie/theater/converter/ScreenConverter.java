@@ -18,6 +18,7 @@ public class ScreenConverter {
         screenEntity.setScreenId(screenModel.getScreenId());
         screenEntity.setTheaterId(screenModel.getTheaterId());
         screenEntity.setScreenName(screenModel.getScreenName());
+        screenEntity.setShowTimes(screenModel.getShowTimes());
         screenEntity.setTotalRows(screenModel.getTotalRows());
         screenEntity.setNumberOfSeatsInEachRow(screenModel.getNumberOfSeatsInEachRow());
         screenEntity.setRowNames(screenModel.getRowNames());
@@ -36,6 +37,7 @@ public class ScreenConverter {
         screenModel.setScreenId(screenEntity.getScreenId());
         screenModel.setTheaterId(screenEntity.getTheaterId());
         screenModel.setScreenName(screenEntity.getScreenName());
+        screenModel.setShowTimes(screenEntity.getShowTimes());
         screenModel.setTotalRows(screenEntity.getTotalRows());
         screenModel.setNumberOfSeatsInEachRow(screenEntity.getNumberOfSeatsInEachRow());
         screenModel.setRowNames(screenEntity.getRowNames());
