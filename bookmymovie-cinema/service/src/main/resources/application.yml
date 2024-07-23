@@ -33,3 +33,21 @@ server:
 logging:
   level:
     root: INFO
+
+success:
+  code: 255
+  msg: 'Successful!'
+
+error.code.map: {\
+exception:'455',\
+coversionException:'456',\
+recordNotFoundException:'457',\
+datastoreException:'458'\
+}
+
+error.msg.map: {\
+exception:'Failed!',\
+coversionException:'Conversion Error! Record Creation Failed',\
+recordNotFoundException:'Invalid Record! Update Failed',\
+datastoreException:'DB Error! Record Creation Failed'\
+}
