@@ -2,7 +2,7 @@
 
 ## About
 
-This Application has below details:
+This Application has below Roles:
 1. Offer/discount details.
 2. Ratings (User/Critics).
 3. Generate offers/discounts automatically based on the DOB, Marriage Anniversary.

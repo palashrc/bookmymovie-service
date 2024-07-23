@@ -17,9 +17,10 @@ public class MovieShowConverter {
         }
         movieShowEntity.setMovieShowId(movieShowModel.getMovieShowId());
         movieShowEntity.setMovieId(movieShowModel.getMovieId());
+        movieShowEntity.setCityId(movieShowModel.getCityId());
         movieShowEntity.setTheaterId(movieShowModel.getTheaterId());
         movieShowEntity.setScreenId(movieShowModel.getScreenId());
-        movieShowEntity.setScreenAssigned(movieShowModel.getScreenAssigned());
+        movieShowEntity.setShowTimes(movieShowModel.getShowTimes());
         movieShowEntity.setOperational(movieShowModel.getOperational());
         return movieShowEntity;
     }
@@ -32,9 +33,10 @@ public class MovieShowConverter {
         }
         movieShowModel.setMovieShowId(movieShowEntity.getMovieShowId());
         movieShowModel.setMovieId(movieShowEntity.getMovieId());
+        movieShowModel.setCityId(movieShowEntity.getCityId());
         movieShowModel.setTheaterId(movieShowEntity.getTheaterId());
         movieShowModel.setScreenId(movieShowEntity.getScreenId());
-        movieShowModel.setScreenAssigned(movieShowEntity.getScreenAssigned());
+        movieShowModel.setShowTimes(movieShowEntity.getShowTimes());
         movieShowModel.setOperational(movieShowEntity.getOperational());
         return movieShowModel;
     }

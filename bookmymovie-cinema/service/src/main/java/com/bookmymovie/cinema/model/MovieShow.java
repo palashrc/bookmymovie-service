@@ -16,11 +16,13 @@ public class MovieShow {
 
     private Long movieId;
 
+    private Long cityId;
+
     private Long theaterId;
 
     private Long screenId;
 
-    private List<String> screenAssigned;
+    private List<String> showTimes;
 
     private Boolean operational;
 }
