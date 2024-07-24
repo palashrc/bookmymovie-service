@@ -2,7 +2,7 @@ package com.bookmymovie.viewer.service;
 
 import com.bookmymovie.core.error.CoversionException;
 import com.bookmymovie.viewer.converter.ViewerConverter;
-import com.bookmymovie.viewer.helper.Constants;
+import com.bookmymovie.viewer.constant.ExceptionConstants;
 import com.bookmymovie.viewer.helper.StatusMapper;
 import com.bookmymovie.viewer.model.Viewer;
 import com.bookmymovie.viewer.model.ViewerRequest;
@@ -34,11 +34,11 @@ public class ViewerService {
             viewerResponse.getViewers().add(viewerConverter.convertEntityToModel(viewerEntityRes));
             statusMapper.mapSuccessCodeMsg(viewerResponse);
         } catch(CoversionException ex) {
-            viewerResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
+            viewerResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.CONVERSION_EXCEPTION_TYPE));
         } catch(DatastoreException ex) {
-            viewerResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            viewerResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            viewerResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            viewerResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.EXCEPTION_TYPE));
         }
         return viewerResponse;
     }
@@ -51,11 +51,11 @@ public class ViewerService {
             viewerResponse.getViewers().add(viewer);
             statusMapper.mapSuccessCodeMsg(viewerResponse);
         } catch(CoversionException ex) {
-            viewerResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
+            viewerResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.CONVERSION_EXCEPTION_TYPE));
         } catch(DatastoreException ex) {
-            viewerResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            viewerResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            viewerResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            viewerResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.EXCEPTION_TYPE));
         }
         return viewerResponse;
     }

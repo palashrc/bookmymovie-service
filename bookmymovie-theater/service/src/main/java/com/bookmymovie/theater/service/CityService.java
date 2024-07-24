@@ -2,7 +2,7 @@ package com.bookmymovie.theater.service;
 
 import com.bookmymovie.core.error.CoversionException;
 import com.bookmymovie.core.error.RecordNotFoundException;
-import com.bookmymovie.theater.helper.Constants;
+import com.bookmymovie.theater.constant.ExceptionConstants;
 import com.bookmymovie.theater.helper.StatusMapper;
 import com.bookmymovie.theater.converter.CityConverter;
 import com.bookmymovie.theater.model.City;
@@ -39,11 +39,17 @@ public class CityService {
             cityResponse.getCities().add(cityConverter.convertEntityToModel(cityEntityRes));
             statusMapper.mapSuccessCodeMsg(cityResponse);
         } catch(CoversionException ex) {
-            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
+            log.error("CoversionException Occurs!");
+            ex.printStackTrace();
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.CONVERSION_EXCEPTION_TYPE));
         } catch(DatastoreException ex) {
-            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            log.error("DatastoreException Occurs!");
+            ex.printStackTrace();
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            log.error("Exception Occurs!");
+            ex.printStackTrace();
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.EXCEPTION_TYPE));
         }
         return cityResponse;
     }
@@ -57,9 +63,13 @@ public class CityService {
             cityResponse.getCities().addAll(cityListRes);
             statusMapper.mapSuccessCodeMsg(cityResponse);
         } catch(DatastoreException ex) {
-            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            log.error("DatastoreException Occurs!");
+            ex.printStackTrace();
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            log.error("Exception Occurs!");
+            ex.printStackTrace();
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.EXCEPTION_TYPE));
         }
         return cityResponse;
     }
@@ -72,11 +82,17 @@ public class CityService {
             cityResponse.getCities().add(city);
             statusMapper.mapSuccessCodeMsg(cityResponse);
         } catch(CoversionException ex) {
-            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
+            log.error("CoversionException Occurs!");
+            ex.printStackTrace();
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.CONVERSION_EXCEPTION_TYPE));
         } catch(DatastoreException ex) {
-            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            log.error("DatastoreException Occurs!");
+            ex.printStackTrace();
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            log.error("Exception Occurs!");
+            ex.printStackTrace();
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.EXCEPTION_TYPE));
         }
         return cityResponse;
     }
@@ -91,9 +107,13 @@ public class CityService {
                 statusMapper.mapSuccessCodeMsg(cityResponse);
             }
         } catch(DatastoreException ex) {
-            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            log.error("DatastoreException Occurs!");
+            ex.printStackTrace();
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            log.error("Exception Occurs!");
+            ex.printStackTrace();
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.EXCEPTION_TYPE));
         }
         return cityResponse;
     }
@@ -110,13 +130,21 @@ public class CityService {
             cityResponse.getCities().add(cityConverter.convertEntityToModel(cityResUpdated));
             statusMapper.mapSuccessCodeMsg(cityResponse);
         } catch(RecordNotFoundException ex) {
-            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.RECORD_NOT_FOUND_EXCEPTION_TYPE));
+            log.error("RecordNotFoundException Occurs!");
+            ex.printStackTrace();
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.RECORD_NOT_FOUND_EXCEPTION_TYPE));
         } catch(CoversionException ex) {
-            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
+            log.error("CoversionException Occurs!");
+            ex.printStackTrace();
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.CONVERSION_EXCEPTION_TYPE));
         } catch(DatastoreException ex) {
-            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            log.error("DatastoreException Occurs!");
+            ex.printStackTrace();
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            log.error("Exception Occurs!");
+            ex.printStackTrace();
+            cityResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.EXCEPTION_TYPE));
         }
         return cityResponse;
     }

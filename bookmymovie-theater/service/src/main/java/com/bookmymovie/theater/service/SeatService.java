@@ -3,7 +3,7 @@ package com.bookmymovie.theater.service;
 import com.bookmymovie.core.error.CoversionException;
 import com.bookmymovie.theater.converter.ScreenConverter;
 import com.bookmymovie.theater.converter.SeatConverter;
-import com.bookmymovie.theater.helper.Constants;
+import com.bookmymovie.theater.constant.ExceptionConstants;
 import com.bookmymovie.theater.helper.StatusMapper;
 import com.bookmymovie.theater.model.*;
 import com.bookmymovie.theater.repository.ScreenRepository;
@@ -49,11 +49,17 @@ public class SeatService {
             seatResponse.getSeats().addAll(seatListRes);
             statusMapper.mapSuccessCodeMsg(seatResponse);
         } catch(CoversionException ex) {
-            seatResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
+            log.error("CoversionException Occurs!");
+            ex.printStackTrace();
+            seatResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.CONVERSION_EXCEPTION_TYPE));
         } catch(DatastoreException ex) {
-            seatResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            log.error("DatastoreException Occurs!");
+            ex.printStackTrace();
+            seatResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            seatResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            log.error("Exception Occurs!");
+            ex.printStackTrace();
+            seatResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.EXCEPTION_TYPE));
         }
         return seatResponse;
     }

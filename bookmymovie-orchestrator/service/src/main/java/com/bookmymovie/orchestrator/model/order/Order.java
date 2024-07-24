@@ -1,5 +1,6 @@
 package com.bookmymovie.orchestrator.model.order;
 
+import com.bookmymovie.orchestrator.model.SeatBook;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,12 +17,29 @@ public class Order {
 
     private Long viewerId;
 
+    private String firstName;
+
+    private String lastName;
+
+    private String mobile;
+
+    private String email;
+
     private Long movieId;
+
+    private String movieName;
+
+    private String movieCertificate;
+
+    private Long theaterId;
+
+    private String theaterName;
 
     private Long screenId;
 
+    private String screenName;
+
     private String showdate;
 
-    private List<Long> seats;
-
+    private List<SeatBook> seatBook;
 }

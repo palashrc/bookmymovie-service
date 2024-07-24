@@ -15,6 +15,8 @@ public class OrderResponse {
 
     private List<Order> orders = new ArrayList<>();
 
+    private Long transactionId;
+
     private String successCode;
 
     private String successMessage;

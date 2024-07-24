@@ -1,6 +1,6 @@
-package com.bookmymovie.viewer.helper;
+package com.bookmymovie.orchestrator.constant;
 
-public interface Constants {
+public interface ExceptionConstants {
 
     String EXCEPTION_TYPE = "exception";
     String CONVERSION_EXCEPTION_TYPE = "coversionException";

@@ -1,7 +1,7 @@
 package com.bookmymovie.cinema.service;
 
 import com.bookmymovie.cinema.converter.MovieConverter;
-import com.bookmymovie.cinema.helper.Constants;
+import com.bookmymovie.cinema.constant.ExceptionConstants;
 import com.bookmymovie.cinema.helper.StatusMapper;
 import com.bookmymovie.cinema.model.MovieRequest;
 import com.bookmymovie.cinema.model.MovieResponse;
@@ -33,14 +33,17 @@ public class MovieService {
             movieResponse.getMovie().add(movieConverter.convertEntityToModel(movieEntityRes));
             statusMapper.mapSuccessCodeMsg(movieResponse);
         } catch(CoversionException ex) {
+            log.error("CoversionException Occurs!");
             ex.printStackTrace();
-            movieResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
+            movieResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.CONVERSION_EXCEPTION_TYPE));
         } catch(DatastoreException ex) {
+            log.error("DatastoreException Occurs!");
             ex.printStackTrace();
-            movieResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            movieResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
+            log.error("Exception Occurs!");
             ex.printStackTrace();
-            movieResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            movieResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.EXCEPTION_TYPE));
         }
         return movieResponse;
     }

@@ -3,7 +3,7 @@ package com.bookmymovie.theater.service;
 import com.bookmymovie.core.error.CoversionException;
 import com.bookmymovie.theater.converter.TheaterConverter;
 import com.bookmymovie.theater.model.Theater;
-import com.bookmymovie.theater.helper.Constants;
+import com.bookmymovie.theater.constant.ExceptionConstants;
 import com.bookmymovie.theater.helper.StatusMapper;
 import com.bookmymovie.theater.model.TheaterRequest;
 import com.bookmymovie.theater.model.TheaterResponse;
@@ -36,11 +36,17 @@ public class TheaterService {
             theaterResponse.getTheaters().add(theaterConverter.convertEntityToModel(theaterEntityRes));
             statusMapper.mapSuccessCodeMsg(theaterResponse);
         } catch(CoversionException ex) {
-            theaterResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.CONVERSION_EXCEPTION_TYPE));
+            log.error("CoversionException Occurs!");
+            ex.printStackTrace();
+            theaterResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.CONVERSION_EXCEPTION_TYPE));
         } catch(DatastoreException ex) {
-            theaterResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            log.error("DatastoreException Occurs!");
+            ex.printStackTrace();
+            theaterResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            theaterResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            log.error("Exception Occurs!");
+            ex.printStackTrace();
+            theaterResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.EXCEPTION_TYPE));
         }
         return theaterResponse;
     }
@@ -54,9 +60,13 @@ public class TheaterService {
             theaterResponse.getTheaters().addAll(theaterListRes);
             statusMapper.mapSuccessCodeMsg(theaterResponse);
         } catch(DatastoreException ex) {
-            theaterResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.DATASTORE_EXCEPTION_TYPE));
+            log.error("DatastoreException Occurs!");
+            ex.printStackTrace();
+            theaterResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.DATASTORE_EXCEPTION_TYPE));
         } catch(Exception ex) {
-            theaterResponse.getErrors().add(statusMapper.mapErrorCodeMsg(Constants.EXCEPTION_TYPE));
+            log.error("Exception Occurs!");
+            ex.printStackTrace();
+            theaterResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.EXCEPTION_TYPE));
         }
         return theaterResponse;
     }

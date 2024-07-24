@@ -9,9 +9,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderRequest {
+public class SeatBook {
 
-    private Long transactionId;
+    private Long seatId;
 
-    private Order order;
+    private String seatNumber;
+
+    private String seatType;
+
+    private String seatPrice;
+
 }

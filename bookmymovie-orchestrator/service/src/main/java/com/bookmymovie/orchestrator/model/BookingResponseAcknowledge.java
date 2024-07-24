@@ -1,5 +1,6 @@
 package com.bookmymovie.orchestrator.model;
 
+import com.bookmymovie.core.error.Error;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,9 +14,13 @@ import java.util.List;
 @AllArgsConstructor
 public class BookingResponseAcknowledge {
 
-    private List<Booking> bookings = new ArrayList<>();
+    private String transactionId;
 
     private String acknowledgeCode;
+
+    private String successCode;
+
+    private String successMessage;
 
     private List<Error> errors = new ArrayList<>();
 }

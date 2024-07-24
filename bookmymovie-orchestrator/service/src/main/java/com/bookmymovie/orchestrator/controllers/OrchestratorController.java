@@ -1,7 +1,7 @@
 package com.bookmymovie.orchestrator.controllers;
 
 import com.bookmymovie.orchestrator.model.BookingRequest;
-import com.bookmymovie.orchestrator.model.BookingResponse;
+import com.bookmymovie.orchestrator.model.BookingResponseAcknowledge;
 import com.bookmymovie.orchestrator.service.OrchestratorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +16,5 @@ public class OrchestratorController {
 
     @PostMapping("/book-new")
     @ResponseBody
-    public BookingResponse addViewer(@RequestBody BookingRequest bookingRequest) { return orchestratorService.createBooking(bookingRequest); }
+    public BookingResponseAcknowledge createBooking(@RequestBody BookingRequest bookingRequest) { return orchestratorService.createBooking(bookingRequest); }
 }

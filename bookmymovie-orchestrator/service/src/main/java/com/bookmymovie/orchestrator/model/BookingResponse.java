@@ -15,6 +15,8 @@ public class BookingResponse {
 
     private List<Booking> bookings = new ArrayList<>();
 
+    private Long transactionId;
+
     private String successCode;
 
     private String successMessage;
