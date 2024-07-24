@@ -38,6 +38,10 @@ seat:
   book:
     limit: 10
 
+order:
+  service:
+    url: http://localhost:8085/order/order-new
+
 acknowledgement:
   code: ACK
 

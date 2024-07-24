@@ -1,4 +1,4 @@
-package com.bookmymovie.orchestrator.model.order;
+package com.bookmymovie.order.model.payment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderRequest {
+public class PaymentRequest {
 
     private String transactionId;
-
-    private Order order;
 }

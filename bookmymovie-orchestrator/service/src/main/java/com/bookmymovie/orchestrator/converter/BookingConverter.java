@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class BookingConverter {
 
-    public OrderRequest convertBookingToOrder(BookingRequest bookingRequest) throws CoversionException {
+    public OrderRequest convertBookingToOrder(BookingRequest bookingRequest, String txnId) throws CoversionException {
         if (bookingRequest == null) {
             log.error("Booking to Order Conversion Failed!");
             throw new CoversionException();
@@ -21,6 +21,7 @@ public class BookingConverter {
             throw new CoversionException();
         }
         OrderRequest orderRequest = new OrderRequest();
+        orderRequest.setTransactionId(txnId);
         Order order = new Order();
         order.setBookingId(bookingRequest.getBooking().getBookingId());
         order.setViewerId(bookingRequest.getBooking().getViewerId());

@@ -1,7 +1,7 @@
-package com.bookmymovie.orchestrator.helper;
+package com.bookmymovie.order.helper;
 
 import com.bookmymovie.core.error.Error;
-import com.bookmymovie.orchestrator.model.BookingResponseAck;
+import com.bookmymovie.order.model.OrderResponseAck;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -28,13 +28,13 @@ public class StatusMapper {
     @Value("#{${error.msg.map}}")
     private Map<String, String> errorMsgMap;
 
-    public void mapSuccessCodeMsg(BookingResponseAck bookingResponseAck) {
-        bookingResponseAck.setSuccessCode(successCode);
-        bookingResponseAck.setSuccessMessage(successMessage);
+    public void mapSuccessCodeMsg(OrderResponseAck orderResponseAck) {
+        orderResponseAck.setSuccessCode(successCode);
+        orderResponseAck.setSuccessMessage(successMessage);
     }
 
-    public void mapAckCode(BookingResponseAck bookingResponseAcknowledge) {
-        bookingResponseAcknowledge.setAcknowledgeCode(ackCode);
+    public void mapAckCode(OrderResponseAck orderResponseAck) {
+        orderResponseAck.setAcknowledgeCode(ackCode);
     }
 
     public Error mapErrorCodeMsg(String exceptionType) {

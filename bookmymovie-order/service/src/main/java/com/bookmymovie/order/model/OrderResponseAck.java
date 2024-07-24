@@ -1,4 +1,4 @@
-package com.bookmymovie.orchestrator.model;
+package com.bookmymovie.order.model;
 
 import com.bookmymovie.core.error.Error;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookingResponseAcknowledge {
+public class OrderResponseAck {
 
     private String transactionId;
 

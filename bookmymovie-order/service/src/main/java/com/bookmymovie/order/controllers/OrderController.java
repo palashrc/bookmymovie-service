@@ -1,7 +1,7 @@
 package com.bookmymovie.order.controllers;
 
 import com.bookmymovie.order.model.OrderRequest;
-import com.bookmymovie.order.model.OrderResponse;
+import com.bookmymovie.order.model.OrderResponseAck;
 import com.bookmymovie.order.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +16,5 @@ public class OrderController {
 
     @PostMapping("/order-new")
     @ResponseBody
-    public OrderResponse addViewer(@RequestBody OrderRequest orderRequest) { return orderService.createOrder(orderRequest); }
+    public OrderResponseAck addViewer(@RequestBody OrderRequest orderRequest) { return orderService.createOrder(orderRequest); }
 }
