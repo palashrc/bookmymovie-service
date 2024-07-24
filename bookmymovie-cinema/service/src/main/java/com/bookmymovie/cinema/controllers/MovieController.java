@@ -15,7 +15,7 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @PostMapping("/movie-add")
+    @PostMapping("/movie-new")
     @ResponseBody
     public MovieResponse createMovie(@RequestBody MovieRequest movieRequest) { return movieService.saveMovie(movieRequest); }
 }

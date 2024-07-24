@@ -15,7 +15,7 @@ public class ScreenController {
     @Autowired
     private ScreenService screenService;
 
-    @PostMapping("/screen-add")
+    @PostMapping("/screen-new")
     @ResponseBody
     public ScreenResponse addScreen(@RequestBody ScreenRequest screenRequest) { return screenService.saveScreen(screenRequest); }
 

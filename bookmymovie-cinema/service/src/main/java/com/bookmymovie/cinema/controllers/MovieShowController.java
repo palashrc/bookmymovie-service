@@ -15,7 +15,7 @@ public class MovieShowController {
     @Autowired
     private MovieShowService movieShowService;
 
-    @PostMapping("/movieshow-add")
+    @PostMapping("/movieshow-new")
     @ResponseBody
     public MovieShowResponse createMovie(@RequestBody MovieShowRequest movieShowRequest) { return movieShowService.createMovieShow(movieShowRequest); }
 }

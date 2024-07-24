@@ -14,7 +14,7 @@ public class ViewerController {
     @Autowired
     private ViewerService viewerService;
 
-    @PostMapping("/viewer-add")
+    @PostMapping("/viewer-new")
     @ResponseBody
     public ViewerResponse addViewer(@RequestBody ViewerRequest viewerRequest) { return viewerService.saveViewer(viewerRequest); }
 

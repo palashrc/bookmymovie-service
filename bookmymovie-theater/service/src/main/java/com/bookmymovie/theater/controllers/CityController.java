@@ -14,7 +14,7 @@ public class CityController {
     @Autowired
     private CityService cityService;
 
-    @PostMapping("/city-add")
+    @PostMapping("/city-new")
     @ResponseBody
     public CityResponse addCity(@RequestBody CityRequest cityRequest) {
         return cityService.saveCity(cityRequest);

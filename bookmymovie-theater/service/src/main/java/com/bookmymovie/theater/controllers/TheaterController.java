@@ -15,7 +15,7 @@ public class TheaterController {
     @Autowired
     private TheaterService theaterService;
 
-    @PostMapping("/theater-add")
+    @PostMapping("/theater-new")
     @ResponseBody
     public TheaterResponse addTheater(@RequestBody TheaterRequest theaterRequest) { return theaterService.saveTheater(theaterRequest); }
 
