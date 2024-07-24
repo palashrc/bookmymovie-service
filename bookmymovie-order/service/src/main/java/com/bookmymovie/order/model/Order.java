@@ -41,4 +41,6 @@ public class Order {
     private String showdate;
 
     private List<SeatBook> seatBook;
+
+    private Payment payment;
 }

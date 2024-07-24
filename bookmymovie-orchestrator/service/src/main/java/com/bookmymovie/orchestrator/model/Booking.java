@@ -41,4 +41,6 @@ public class Booking {
     private String showdate;
 
     private List<SeatBook> seatBook;
+
+    private Payment payment;
 }

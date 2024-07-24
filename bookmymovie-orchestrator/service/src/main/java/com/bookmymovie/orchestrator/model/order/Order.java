@@ -1,5 +1,6 @@
 package com.bookmymovie.orchestrator.model.order;
 
+import com.bookmymovie.orchestrator.model.Payment;
 import com.bookmymovie.orchestrator.model.SeatBook;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,4 +43,6 @@ public class Order {
     private String showdate;
 
     private List<SeatBook> seatBook;
+
+    private Payment payment;
 }
