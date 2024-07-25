@@ -1,11 +1,10 @@
-package com.bookmymovie.orchestrator.model.order;
+package com.bookmymovie.payment.model;
 
 import com.bookmymovie.core.error.Error;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderResponseAck {
+public class PaymentResponseAck {
 
     private String transactionId;
 

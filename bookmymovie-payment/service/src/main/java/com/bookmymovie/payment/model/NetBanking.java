@@ -1,4 +1,4 @@
-package com.bookmymovie.orchestrator.model.order;
+package com.bookmymovie.payment.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderRequest {
+public class NetBanking {
 
-    private String transactionId;
+    private String bankName;
 
-    private Order order;
+    private String netBankingId;
+
+    private String netBankingPassword;
 }

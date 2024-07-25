@@ -38,6 +38,10 @@ payment:
   service:
     url: http://localhost:8086/pay/payment-new
 
+convenience:
+  fees:
+    percentage: 3
+
 acknowledgement:
   code: ACK
 

@@ -2,8 +2,8 @@ package com.bookmymovie.orchestrator.converter;
 
 import com.bookmymovie.core.error.CoversionException;
 import com.bookmymovie.orchestrator.model.*;
-import com.bookmymovie.orchestrator.model.order.Order;
-import com.bookmymovie.orchestrator.model.order.OrderRequest;
+import com.bookmymovie.orchestrator.model.Order;
+import com.bookmymovie.orchestrator.model.OrderRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +30,7 @@ public class BookingConverter {
         order.setMobile(bookingRequest.getBooking().getMobile());
         order.setEmail(bookingRequest.getBooking().getEmail());
         order.setMovieId(bookingRequest.getBooking().getMovieId());
+        order.setMovieName(bookingRequest.getBooking().getMovieName());
         order.setMovieCertificate(bookingRequest.getBooking().getMovieCertificate());
         order.setTheaterId(bookingRequest.getBooking().getTheaterId());
         order.setTheaterName(bookingRequest.getBooking().getTheaterName());

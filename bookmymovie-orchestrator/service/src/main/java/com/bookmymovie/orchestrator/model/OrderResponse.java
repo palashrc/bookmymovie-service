@@ -1,4 +1,4 @@
-package com.bookmymovie.orchestrator.model.order;
+package com.bookmymovie.orchestrator.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

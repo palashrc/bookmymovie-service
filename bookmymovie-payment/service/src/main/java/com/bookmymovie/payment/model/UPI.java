@@ -1,4 +1,4 @@
-package com.bookmymovie.order.model.payment;
+package com.bookmymovie.payment.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentRequest {
+public class UPI {
 
-    private String transactionId;
+    private String upiId;
+
+    private String upiName;
 }

@@ -1,4 +1,4 @@
-package com.bookmymovie.orchestrator.model.order;
+package com.bookmymovie.orchestrator.model;
 
 import com.bookmymovie.orchestrator.model.Payment;
 import com.bookmymovie.orchestrator.model.SeatBook;
