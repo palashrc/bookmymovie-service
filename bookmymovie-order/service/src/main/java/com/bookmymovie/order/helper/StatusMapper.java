@@ -2,6 +2,7 @@ package com.bookmymovie.order.helper;
 
 import com.bookmymovie.core.error.Error;
 import com.bookmymovie.order.model.OrderResponseAck;
+import com.bookmymovie.order.model.OrderResponseAsync;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -28,9 +29,14 @@ public class StatusMapper {
     @Value("#{${error.msg.map}}")
     private Map<String, String> errorMsgMap;
 
-    public void mapSuccessCodeMsg(OrderResponseAck orderResponseAck) {
-        orderResponseAck.setSuccessCode(successCode);
-        orderResponseAck.setSuccessMessage(successMessage);
+    public void mapSuccessCodeMsg(OrderResponseAck ack) {
+        ack.setSuccessCode(successCode);
+        ack.setSuccessMessage(successMessage);
+    }
+
+    public void mapSuccessCodeMsg(OrderResponseAsync async) {
+        async.setSuccessCode(successCode);
+        async.setSuccessMessage(successMessage);
     }
 
     public void mapAckCode(OrderResponseAck orderResponseAck) {

@@ -34,6 +34,11 @@ logging:
   level:
     root: INFO
 
+order:
+  service:
+    async:
+      url: http://localhost:8085/order/order-async
+
 acknowledgement:
   code: ACK
 
@@ -46,7 +51,8 @@ exception:'455',\
 coversionException:'456',\
 recordNotFoundException:'457',\
 datastoreException:'458',\
-transactionNotFoundException:'459'\
+transactionNotFoundException:'459',\
+paymentProcessException:'460'\
 }
 
 error.msg.map: {\
@@ -54,5 +60,6 @@ exception:'Failed!',\
 coversionException:'Conversion Error!',\
 recordNotFoundException:'Invalid Record!',\
 datastoreException:'DB Error!',\
-transactionNotFoundException:'Transaction Not Found!!'\
+transactionNotFoundException:'Transaction Not Found!',\
+paymentProcessException:'460'\
 }

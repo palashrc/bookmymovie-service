@@ -41,8 +41,8 @@ public class OrderService {
     private RestTemplate restTemplate;
 
     public OrderResponseAck createOrder(OrderRequest orderRequest) {
+        log.info("Order Received: " + orderRequest);
         OrderResponseAck ack = new OrderResponseAck();
-        log.info("Order received: " + orderRequest);
         try {
             String txnId = init(orderRequest);
             ack.setTransactionId(txnId);
@@ -102,5 +102,7 @@ public class OrderService {
             }
         }
     }
+
+
 
 }

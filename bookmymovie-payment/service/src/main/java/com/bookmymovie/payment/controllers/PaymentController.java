@@ -16,5 +16,5 @@ public class PaymentController {
 
     @PostMapping("/payment-new")
     @ResponseBody
-    public PaymentResponseAck addViewer(@RequestBody PaymentRequest paymentRequest) { return paymentService.createPayment(paymentRequest); }
+    public PaymentResponseAck createPayment(@RequestBody PaymentRequest paymentRequest) { return paymentService.createPayment(paymentRequest); }
 }

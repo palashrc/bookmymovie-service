@@ -2,6 +2,7 @@ package com.bookmymovie.payment.helper;
 
 import com.bookmymovie.core.error.Error;
 import com.bookmymovie.payment.model.PaymentResponseAck;
+import com.bookmymovie.payment.model.PaymentResponseAsync;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -35,6 +36,11 @@ public class StatusMapper {
 
     public void mapAckCode(PaymentResponseAck paymentResponseAck) {
         paymentResponseAck.setAcknowledgeCode(ackCode);
+    }
+
+    public void mapSuccessCodeMsg(PaymentResponseAsync paymentResponseAsync) {
+        paymentResponseAsync.setSuccessCode(successCode);
+        paymentResponseAsync.setSuccessMessage(successMessage);
     }
 
     public Error mapErrorCodeMsg(String exceptionType) {
