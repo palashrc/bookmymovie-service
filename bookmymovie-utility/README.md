@@ -23,7 +23,7 @@ This Application has below Roles:
 
 ### Directories
 
-* configuration - Deploymeny and Kubernetes Components
+* configuration - Deployment and Kubernetes Components
 
 * service/main - Java application
 

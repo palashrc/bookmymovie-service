@@ -16,7 +16,7 @@ public class ViewerController {
 
     @PostMapping("/viewer-new")
     @ResponseBody
-    public ViewerResponse addViewer(@RequestBody ViewerRequest viewerRequest) { return viewerService.saveViewer(viewerRequest); }
+    public ViewerResponse addViewer(@RequestBody ViewerRequest viewerRequest) { return viewerService.createViewer(viewerRequest); }
 
     @PostMapping("/viewer-by-mobile")
     @ResponseBody

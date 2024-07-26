@@ -42,12 +42,14 @@ error.code.map: {\
 exception:'455',\
 coversionException:'456',\
 recordNotFoundException:'457',\
-datastoreException:'458'\
+datastoreException:'458',\
+registrationException:'461'\
 }
 
 error.msg.map: {\
 exception:'Failed!',\
 coversionException:'Conversion Error!',\
 recordNotFoundException:'Invalid Record!',\
-datastoreException:'DB Error!'\
+datastoreException:'DB Error!',\
+registrationException:'Registration Failed!'\
 }

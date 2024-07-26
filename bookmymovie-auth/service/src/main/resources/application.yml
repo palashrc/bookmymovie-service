@@ -2,10 +2,53 @@ spring:
   application:
     name: bookmymovie-auth
     version: 1.0.0-SNAPSHOT
+  profiles:
+    active: logs-stdout, local
+    group:
+      my-local: local
+  lifecycle:
+    timeout-per-shutdown-phase: 1m
+  cloud:
+    gcp:
+      core:
+        enabled: true
+      datastore:
+        enabled: true
+        namespace: bookmymovie
+        project-id: bookmymovie-db
+        emulator:
+          enabled: true
+          namespace: bookmymovie
+          project-id: bookmymovie-db
+          port: 9089
+          data-dir: F:\Program-Files\Firestore-Emulator-Data-Dir
+      active: logs-stdout-json-gke
+      grourp:
+        my-local: local
+
 
 server:
   port: 8089
+  shutdown: graceful
 
 logging:
   level:
     root: INFO
+
+success:
+  code: 255
+  msg: 'Successful!'
+
+error.code.map: {\
+exception:'455',\
+coversionException:'456',\
+recordNotFoundException:'457',\
+datastoreException:'458'\
+}
+
+error.msg.map: {\
+exception:'Failed!',\
+coversionException:'Conversion Error!',\
+recordNotFoundException:'Invalid Record!',\
+datastoreException:'DB Error!'\
+}
