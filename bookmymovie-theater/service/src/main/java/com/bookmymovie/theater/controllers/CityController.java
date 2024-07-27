@@ -1,5 +1,6 @@
 package com.bookmymovie.theater.controllers;
 
+import com.bookmymovie.theater.aspect.TrackExecutionTime;
 import com.bookmymovie.theater.model.CityRequest;
 import com.bookmymovie.theater.model.CityResponse;
 import com.bookmymovie.theater.service.CityService;
@@ -16,23 +17,28 @@ public class CityController {
 
     @PostMapping("/city-new")
     @ResponseBody
+    @TrackExecutionTime
     public CityResponse addCity(@RequestBody CityRequest cityRequest) {
         return cityService.saveCity(cityRequest);
     }
 
     @GetMapping("/city-all")
     @ResponseBody
+    @TrackExecutionTime
     public CityResponse getCity() { return cityService.getCity(); }
 
     @PostMapping("/city-by-id")
     @ResponseBody
+    @TrackExecutionTime
     public CityResponse getCityById(@RequestBody CityRequest cityRequest) { return cityService.getCityById(cityRequest); }
 
     @PostMapping("/city-by-name")
     @ResponseBody
+    @TrackExecutionTime
     public CityResponse getCityByName(@RequestBody CityRequest cityRequest) { return cityService.getCityByName(cityRequest); }
 
     @PostMapping("/city-operation-configure")
     @ResponseBody
+    @TrackExecutionTime
     public CityResponse updateCityOperational(@RequestBody CityRequest cityRequest) { return cityService.updateCityOperational(cityRequest); }
 }

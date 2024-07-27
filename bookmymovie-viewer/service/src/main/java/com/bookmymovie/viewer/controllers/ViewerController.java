@@ -1,5 +1,6 @@
 package com.bookmymovie.viewer.controllers;
 
+import com.bookmymovie.viewer.aspect.TrackExecutionTime;
 import com.bookmymovie.viewer.model.ViewerRequest;
 import com.bookmymovie.viewer.model.ViewerResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -16,9 +17,11 @@ public class ViewerController {
 
     @PostMapping("/viewer-new")
     @ResponseBody
+    @TrackExecutionTime
     public ViewerResponse addViewer(@RequestBody ViewerRequest viewerRequest) { return viewerService.createViewer(viewerRequest); }
 
     @PostMapping("/viewer-by-mobile")
     @ResponseBody
+    @TrackExecutionTime
     public ViewerResponse getViewerByMobile(@RequestBody ViewerRequest viewerRequest) { return viewerService.getViewerByMobile(viewerRequest); }
 }

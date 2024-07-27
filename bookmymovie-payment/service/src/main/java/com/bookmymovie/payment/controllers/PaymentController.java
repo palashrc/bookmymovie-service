@@ -1,5 +1,6 @@
 package com.bookmymovie.payment.controllers;
 
+import com.bookmymovie.payment.aspect.TrackExecutionTime;
 import com.bookmymovie.payment.model.PaymentRequest;
 import com.bookmymovie.payment.model.PaymentResponseAck;
 import com.bookmymovie.payment.service.PaymentService;
@@ -16,5 +17,6 @@ public class PaymentController {
 
     @PostMapping("/payment-new")
     @ResponseBody
+    @TrackExecutionTime
     public PaymentResponseAck createPayment(@RequestBody PaymentRequest paymentRequest) { return paymentService.createPayment(paymentRequest); }
 }

@@ -1,5 +1,6 @@
 package com.bookmymovie.theater.controllers;
 
+import com.bookmymovie.theater.aspect.TrackExecutionTime;
 import com.bookmymovie.theater.model.ScreenRequest;
 import com.bookmymovie.theater.model.ScreenResponse;
 import com.bookmymovie.theater.service.ScreenService;
@@ -17,9 +18,11 @@ public class ScreenController {
 
     @PostMapping("/screen-new")
     @ResponseBody
+    @TrackExecutionTime
     public ScreenResponse addScreen(@RequestBody ScreenRequest screenRequest) { return screenService.saveScreen(screenRequest); }
 
     @PostMapping("/screen-by-id")
     @ResponseBody
+    @TrackExecutionTime
     public ScreenResponse getScreenById(@RequestBody ScreenRequest screenRequest) { return screenService.getScreenById(screenRequest); }
 }

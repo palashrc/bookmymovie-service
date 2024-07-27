@@ -1,5 +1,6 @@
 package com.bookmymovie.theater.controllers;
 
+import com.bookmymovie.theater.aspect.TrackExecutionTime;
 import com.bookmymovie.theater.model.TheaterRequest;
 import com.bookmymovie.theater.model.TheaterResponse;
 import com.bookmymovie.theater.service.TheaterService;
@@ -17,9 +18,11 @@ public class TheaterController {
 
     @PostMapping("/theater-new")
     @ResponseBody
+    @TrackExecutionTime
     public TheaterResponse addTheater(@RequestBody TheaterRequest theaterRequest) { return theaterService.saveTheater(theaterRequest); }
 
     @GetMapping("/theater-all")
     @ResponseBody
+    @TrackExecutionTime
     public TheaterResponse getTheater() { return theaterService.getTheater(); }
 }

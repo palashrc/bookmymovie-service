@@ -1,5 +1,6 @@
 package com.bookmymovie.order.controllers;
 
+import com.bookmymovie.order.aspect.TrackExecutionTime;
 import com.bookmymovie.order.model.OrderRequest;
 import com.bookmymovie.order.model.OrderResponseAck;
 import com.bookmymovie.order.model.PaymentResponseAsync;
@@ -21,9 +22,11 @@ public class OrderController {
 
     @PostMapping("/order-new")
     @ResponseBody
+    @TrackExecutionTime
     public OrderResponseAck processOrder(@RequestBody OrderRequest orderRequest) { return orderService.createOrder(orderRequest); }
 
     @PostMapping("/order-async")
     @ResponseBody
+    @TrackExecutionTime
     public PaymentResponseAsync processAsyncOrder(@RequestBody PaymentResponseAsync paymentResponseAsync) { return orderAsyncService.processAsyncOrder(paymentResponseAsync); }
 }

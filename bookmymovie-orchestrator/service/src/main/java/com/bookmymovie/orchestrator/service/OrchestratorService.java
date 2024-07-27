@@ -1,14 +1,15 @@
 package com.bookmymovie.orchestrator.service;
 
+import com.bookmymovie.core.error.BookingException;
 import com.bookmymovie.core.error.CoversionException;
 import com.bookmymovie.orchestrator.constant.CommonConstants;
 import com.bookmymovie.orchestrator.converter.BookingConverter;
 import com.bookmymovie.orchestrator.constant.ExceptionConstants;
 import com.bookmymovie.orchestrator.helper.StatusMapper;
 import com.bookmymovie.orchestrator.model.*;
+import com.bookmymovie.orchestrator.validation.BookingValidator;
 import com.google.cloud.datastore.DatastoreException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -22,8 +23,13 @@ import java.util.UUID;
 @Slf4j
 public class OrchestratorService {
 
+    private String txnId;
+
     @Value("${order.service.url}")
     String orderServiceUrl;
+
+    @Autowired
+    private BookingValidator bookingValidator;
 
     @Autowired
     private BookingConverter bookingConverter;
@@ -39,15 +45,17 @@ public class OrchestratorService {
 
     public BookingResponseAck createBooking(BookingRequest bookingRequest) {
         BookingResponseAck ack = new BookingResponseAck();
-        String txnId = StringUtils.EMPTY;
         try {
-            txnId = init();
-            ack.setTransactionId(txnId);
+            init(bookingRequest, ack);
             OrderRequest orderRequest = bookingConverter.convertBookingToOrder(bookingRequest, txnId);
             statusMapper.mapAckCode(ack);
             statusMapper.mapSuccessCodeMsg(ack);
             Thread thread = new Thread(new OrderAsyncProcessServiceThread(orderRequest));
             thread.start();
+        } catch (BookingException ex) {
+            log.error("BookingException Occurs!");
+            ex.printStackTrace();
+            ack.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.BOOKING_EXCEPTION_TYPE));
         } catch (CoversionException ex) {
             log.error("CoversionException Occurs!");
             ex.printStackTrace();
@@ -66,11 +74,16 @@ public class OrchestratorService {
         return ack;
     }
 
-    private String init() {
+    private void init(BookingRequest bookingRequest, BookingResponseAck ack) throws BookingException {
         UUID uuid = UUID.randomUUID();
         String txnId = CommonConstants.TXN_PREFIX + uuid.toString().replaceAll("-","");
+        this.txnId = txnId;
+        ack.setTransactionId(txnId);
         orchRequestTrackerService.createTracker(txnId);
-        return txnId;
+        if(!bookingValidator.validateBooking(bookingRequest)) {
+            log.error("Booking Failed!");
+            throw new BookingException();
+        }
     }
 
     private void end(String txnId, BookingResponseAck ack) {

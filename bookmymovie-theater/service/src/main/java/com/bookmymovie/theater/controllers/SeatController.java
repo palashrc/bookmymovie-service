@@ -1,5 +1,6 @@
 package com.bookmymovie.theater.controllers;
 
+import com.bookmymovie.theater.aspect.TrackExecutionTime;
 import com.bookmymovie.theater.model.SeatRequest;
 import com.bookmymovie.theater.model.SeatResponse;
 import com.bookmymovie.theater.service.SeatService;
@@ -17,5 +18,6 @@ public class SeatController {
 
     @PostMapping("/seats-new")
     @ResponseBody
+    @TrackExecutionTime
     public SeatResponse createSeats(@RequestBody SeatRequest seatRequest) { return seatService.createSeats(seatRequest); }
 }

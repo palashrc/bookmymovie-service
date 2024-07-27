@@ -34,6 +34,9 @@ logging:
   level:
     root: INFO
 
+aspect:
+  enabled: true
+
 order:
   service:
     async:

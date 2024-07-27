@@ -1,5 +1,6 @@
 package com.bookmymovie.cinema.controllers;
 
+import com.bookmymovie.cinema.aspect.TrackExecutionTime;
 import com.bookmymovie.cinema.model.MovieRequest;
 import com.bookmymovie.cinema.model.MovieResponse;
 import com.bookmymovie.cinema.service.MovieService;
@@ -17,5 +18,6 @@ public class MovieController {
 
     @PostMapping("/movie-new")
     @ResponseBody
+    @TrackExecutionTime
     public MovieResponse createMovie(@RequestBody MovieRequest movieRequest) { return movieService.saveMovie(movieRequest); }
 }
