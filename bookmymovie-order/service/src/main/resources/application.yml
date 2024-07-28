@@ -34,6 +34,25 @@ logging:
   level:
     root: INFO
 
+management:
+  server:
+    port: 7085
+  endpoints:
+    metrics:
+      enabled: true
+    web:
+      exposure:
+        include: health,metrics
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      stackdriver:
+        enabled: true
+      prometheus:
+        enabled: false
+
 aspect:
   enabled: true
 
@@ -74,3 +93,8 @@ datastoreException:'DB Error!',\
 transactionNotFoundException:'Transaction Not Found!',\
 paymentProcessException:'460'\
 }
+
+bmm:
+  metrics:
+    tag:
+      env: LOCAL

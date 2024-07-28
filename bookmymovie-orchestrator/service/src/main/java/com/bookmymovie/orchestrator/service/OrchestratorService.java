@@ -6,6 +6,7 @@ import com.bookmymovie.orchestrator.constant.CommonConstants;
 import com.bookmymovie.orchestrator.converter.BookingConverter;
 import com.bookmymovie.orchestrator.constant.ExceptionConstants;
 import com.bookmymovie.orchestrator.helper.StatusMapper;
+import com.bookmymovie.orchestrator.metrics.MetricsContainerService;
 import com.bookmymovie.orchestrator.model.*;
 import com.bookmymovie.orchestrator.validation.BookingValidator;
 import com.google.cloud.datastore.DatastoreException;
@@ -43,6 +44,9 @@ public class OrchestratorService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private MetricsContainerService metricsContainerService;
+
     public BookingResponseAck createBooking(BookingRequest bookingRequest) {
         BookingResponseAck ack = new BookingResponseAck();
         try {
@@ -55,6 +59,7 @@ public class OrchestratorService {
         } catch (BookingException ex) {
             log.error("BookingException Occurs!");
             ex.printStackTrace();
+            metricsContainerService.incrementOfBookingErrCountMetric();
             ack.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.BOOKING_EXCEPTION_TYPE));
         } catch (CoversionException ex) {
             log.error("CoversionException Occurs!");
@@ -109,6 +114,7 @@ public class OrchestratorService {
             } catch(Exception ex) {
                 log.error("Exception Occurs for Order Microservice Interim Connectivity!");
                 ex.printStackTrace();
+                metricsContainerService.incrementOfOrchToOrderErrCountMetric();
             }
         }
     }

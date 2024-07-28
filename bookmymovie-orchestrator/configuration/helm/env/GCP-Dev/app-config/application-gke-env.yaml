@@ -34,6 +34,25 @@ logging:
   level:
     root: INFO
 
+management:
+  server:
+    port: 7085
+  endpoints:
+    metrics:
+      enabled: true
+    web:
+      exposure:
+        include: health,metrics
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      stackdriver:
+        enabled: true
+      prometheus:
+        enabled: false
+
 aspect:
   enabled: true
 
@@ -67,3 +86,8 @@ recordNotFoundException:'Invalid Record!',\
 datastoreException:'DB Error!',\
 bookingException:'Booking Failed!'\
 }
+
+bmm:
+  metrics:
+    tag:
+      env: DEV

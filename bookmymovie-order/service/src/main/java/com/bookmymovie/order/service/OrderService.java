@@ -5,6 +5,7 @@ import com.bookmymovie.core.error.TransactionNotFoundException;
 import com.bookmymovie.order.constant.ExceptionConstants;
 import com.bookmymovie.order.converter.OrderConverter;
 import com.bookmymovie.order.helper.StatusMapper;
+import com.bookmymovie.order.metrics.MetricsContainerService;
 import com.bookmymovie.order.model.OrderRequest;
 import com.bookmymovie.order.model.OrderResponseAck;
 import com.bookmymovie.order.model.PaymentRequest;
@@ -39,6 +40,9 @@ public class OrderService {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    MetricsContainerService metricsContainerService;
 
     public OrderResponseAck createOrder(OrderRequest orderRequest) {
         log.info("Order Received: " + orderRequest);
@@ -99,6 +103,7 @@ public class OrderService {
             } catch(Exception ex) {
                 log.error("Exception Occurs for Payment Microservice Interim Connectivity!");
                 ex.printStackTrace();
+                metricsContainerService.incrementOfOrderToPaymentErrCountMetric();
             }
         }
     }
