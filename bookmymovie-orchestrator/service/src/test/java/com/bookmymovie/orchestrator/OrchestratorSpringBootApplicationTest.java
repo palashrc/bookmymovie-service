@@ -1,7 +1,6 @@
 package com.bookmymovie.orchestrator;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,6 @@ public class OrchestratorSpringBootApplicationTest {
   public void shouldReturnMessageFromPath(String path, String response) {
     // when
     ResponseEntity<String> responseEntity = template.getForEntity(path, String.class);
-
     // then
     assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
     assertThat(responseEntity.getBody()).isEqualTo(String.format(response, applicationName));

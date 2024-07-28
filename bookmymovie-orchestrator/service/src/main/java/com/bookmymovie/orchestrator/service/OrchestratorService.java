@@ -104,13 +104,13 @@ public class OrchestratorService {
         public void run() {
             log.info("Order Processing Asynchronous Flow...");
             try {
-                HttpEntity<OrderRequest> orderRequestHttpEntity = new HttpEntity<>(orderRequest);
-                ResponseEntity<OrderResponseAck> orderAckResponseEntity = restTemplate.exchange(orderServiceUrl, HttpMethod.POST, orderRequestHttpEntity, OrderResponseAck.class);
-                if (orderAckResponseEntity.getStatusCode().is2xxSuccessful()) {
+                 HttpEntity<OrderRequest> orderRequestHttpEntity = new HttpEntity<>(orderRequest);
+                 ResponseEntity<OrderResponseAck> orderAckResponseEntity = restTemplate.exchange(orderServiceUrl, HttpMethod.POST, orderRequestHttpEntity, OrderResponseAck.class);
+                 if (orderAckResponseEntity.getStatusCode().is2xxSuccessful()) {
                     log.info("Order Microservice Interim Response: " + orderAckResponseEntity.getBody());
-                } else {
+                 } else {
                     log.error("Order Microservice Interim Response Error!");
-                }
+                 }
             } catch(Exception ex) {
                 log.error("Exception Occurs for Order Microservice Interim Connectivity!");
                 ex.printStackTrace();
