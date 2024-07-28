@@ -2,9 +2,10 @@ package com.bookmymovie.payment.service;
 
 import com.bookmymovie.core.error.PaymentProcessException;
 import com.bookmymovie.core.error.TransactionNotFoundException;
-import com.bookmymovie.core.util.CommonUtils;
 import com.bookmymovie.payment.constant.ExceptionConstants;
+import com.bookmymovie.payment.converter.PaymentConverter;
 import com.bookmymovie.payment.helper.StatusMapper;
+import com.bookmymovie.payment.metrics.MetricsContainerService;
 import com.bookmymovie.payment.model.PaymentRequest;
 import com.bookmymovie.payment.model.PaymentResponseAck;
 import com.bookmymovie.payment.model.PaymentResponseAsync;
@@ -16,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,8 +24,13 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class PaymentService {
 
+    private String txnId;
+
     @Value("${order.service.async.url}")
     String orderServiceAsyncUrl;
+
+    @Autowired
+    private PaymentConverter paymentConverter;
 
     @Autowired
     PaymentGatewayProcessorService paymentGatewayProcessorService;
@@ -39,12 +44,14 @@ public class PaymentService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private MetricsContainerService metricsContainerService;
+
     public PaymentResponseAck createPayment(PaymentRequest paymentRequest) {
         PaymentResponseAck ack = new PaymentResponseAck();
         log.info("Payment Received: " + paymentRequest);
         try {
-            String txnId = init(paymentRequest);
-            ack.setTransactionId(txnId);
+            init(paymentRequest, ack);
             statusMapper.mapAckCode(ack);
             statusMapper.mapSuccessCodeMsg(ack);
             Thread thread = new Thread(new PaymentGatewayAsyncProcessServiceThread(paymentRequest));
@@ -64,13 +71,14 @@ public class PaymentService {
         return ack;
     }
 
-    private String init(PaymentRequest paymentRequest) throws TransactionNotFoundException {
+    private void init(PaymentRequest paymentRequest, PaymentResponseAck ack) throws TransactionNotFoundException {
         if(StringUtils.isAllEmpty(paymentRequest.getTransactionId())) {
             log.error("Transaction not found in Request!");
             throw new TransactionNotFoundException();
         }
+        this.txnId = paymentRequest.getTransactionId();
+        ack.setTransactionId(txnId);
         //Save PaymentRequestTracker in DB: TxnId,ReqTimeStamp,TxnStatus
-        return paymentRequest.getTransactionId();
     }
 
     private void end() {
@@ -90,22 +98,8 @@ public class PaymentService {
                     log.error("Payment Processing Failed!");
                     throw new PaymentProcessException();
                 }
-
-                com.bookmymovie.payment.entity.Payment paymentEntity = new com.bookmymovie.payment.entity.Payment();
-                paymentEntity.setTransactionId(paymentRequest.getTransactionId());
-                paymentEntity.setPaymentCategory(paymentRequest.getPayment().getPaymentCategory());
-                paymentEntity.setFinalAmount(paymentRequest.getPayment().getFinalAmount());
-                paymentEntity.setPaymentTimeStamp(CommonUtils.getTimeStamp());
-                com.bookmymovie.payment.entity.Payment paymentEntityRes = paymentRepository.save(paymentEntity);
-
-                async.setPaymentId(paymentEntityRes.getPaymentId());
-                async.setTransactionId(paymentEntityRes.getTransactionId());
-                async.setPaymentCategory(paymentEntityRes.getPaymentCategory());
-                async.setFinalAmount(paymentEntityRes.getFinalAmount());
-                async.setPaymentTimeStamp(paymentEntityRes.getPaymentTimeStamp());
-
-                statusMapper.mapSuccessCodeMsg(async);
-
+                com.bookmymovie.payment.entity.Payment paymentEntityRes = paymentRepository.save(paymentConverter.paymentToPaymentEntity(paymentRequest));
+                statusMapper.mapSuccessCodeMsg(paymentConverter.paymentEntityToPaymentAsync(paymentEntityRes, async));
             } catch(PaymentProcessException ex) {
                 log.error("PaymentProcessException Occurs!");
                 ex.printStackTrace();
@@ -129,6 +123,7 @@ public class PaymentService {
                 } catch(Exception ex) {
                     log.error("Exception Occurs for Order Microservice Async Connectivity!");
                     ex.printStackTrace();
+                    metricsContainerService.incrementOfPaymentToOrderErrCountMetric();
                 }
             }
         }

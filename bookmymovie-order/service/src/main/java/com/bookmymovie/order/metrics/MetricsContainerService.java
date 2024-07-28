@@ -17,6 +17,8 @@ public class MetricsContainerService {
 
   private final Counter counterOfOrderToPaymentErr;
 
+  private final Counter counterOfOrderToOrchErr;
+
   public MetricsContainerService(
       @Value("${bmm.metrics.tag.env}") String metricTagEnv, MeterRegistry meterRegistry) {
     this.metricTagEnv = metricTagEnv;
@@ -26,10 +28,21 @@ public class MetricsContainerService {
                 .description("Counts Exception while sending request from Order to Payment")
                 .tag(CommonConstants.METRICS_ENV, metricTagEnv.trim())
                 .register(meterRegistry);
+
+    this.counterOfOrderToOrchErr =
+            Counter.builder("bmm.order.http.ordertoorch.errcount")
+                    .description("Counts Exception while sending response from Order to Orchestrator")
+                    .tag(CommonConstants.METRICS_ENV, metricTagEnv.trim())
+                    .register(meterRegistry);
   }
 
   public void incrementOfOrderToPaymentErrCountMetric() {
     counterOfOrderToPaymentErr.increment();
     log.error("Metrics Counter for Order to Payment Microservice Connectivity Error incremented...");
+  }
+
+  public void incrementOfOrderToOrchErrCountMetric() {
+    counterOfOrderToOrchErr.increment();
+    log.error("Metrics Counter for Order to Orchestrator Microservice Connectivity Error incremented...");
   }
 }

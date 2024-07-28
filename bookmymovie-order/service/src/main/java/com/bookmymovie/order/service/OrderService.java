@@ -26,6 +26,8 @@ import java.math.BigDecimal;
 @Slf4j
 public class OrderService {
 
+    private String txnId;
+
     @Value("${convenience.fees.percentage}")
     private String convenienceFeesPercentage;
 
@@ -48,8 +50,7 @@ public class OrderService {
         log.info("Order Received: " + orderRequest);
         OrderResponseAck ack = new OrderResponseAck();
         try {
-            String txnId = init(orderRequest);
-            ack.setTransactionId(txnId);
+            init(orderRequest, ack);
             PaymentRequest paymentRequest = orderConverter.convertOrderToPayment(orderRequest, OrderUtils.calculateFinalAmount(orderRequest, new BigDecimal(convenienceFeesPercentage)));
             statusMapper.mapAckCode(ack);
             statusMapper.mapSuccessCodeMsg(ack);
@@ -68,21 +69,22 @@ public class OrderService {
             ex.printStackTrace();
             ack.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.EXCEPTION_TYPE));
         } finally {
-            end();
+            end(txnId);
         }
         return ack;
     }
 
-    private String init(OrderRequest orderRequest) throws TransactionNotFoundException {
+    private void init(OrderRequest orderRequest, OrderResponseAck ack) throws TransactionNotFoundException {
         if(StringUtils.isAllEmpty(orderRequest.getTransactionId())) {
             log.error("Transaction not found in Request!");
             throw new TransactionNotFoundException();
         }
+        this.txnId = orderRequest.getTransactionId();
+        ack.setTransactionId(txnId);
         //Save OrderRequestTracker in DB: TxnId,ReqTimeStamp,TxnStatus
-        return orderRequest.getTransactionId();
     }
 
-    private void end() {
+    private void end(String txnId) {
         //Update OrderRequestTracker in DB: TxnId,ResInterimTimeStamp,TxnStatus
     }
 

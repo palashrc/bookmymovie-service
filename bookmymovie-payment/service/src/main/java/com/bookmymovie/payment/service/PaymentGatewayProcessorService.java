@@ -11,6 +11,6 @@ public class PaymentGatewayProcessorService {
         log.info("Connecting with Payment Gateway...");
         Thread.sleep(7000);
         log.info("Payment Processed!");
-        return  Boolean.TRUE;
+        return Boolean.TRUE;
     }
 }

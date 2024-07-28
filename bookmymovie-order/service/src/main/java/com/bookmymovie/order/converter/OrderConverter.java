@@ -1,5 +1,6 @@
 package com.bookmymovie.order.converter;
 
+import com.bookmymovie.core.util.CommonUtils;
 import com.bookmymovie.order.model.*;
 import com.bookmymovie.core.error.CoversionException;
 import lombok.extern.slf4j.Slf4j;
@@ -68,6 +69,27 @@ public class OrderConverter {
 
         paymentRequest.setPayment(payment);
         return paymentRequest;
+    }
+
+    public com.bookmymovie.order.entity.Order convertPaymentToOrderEntity(PaymentResponseAsync paymentResponseAsync, String orderId) {
+        com.bookmymovie.order.entity.Order order = new com.bookmymovie.order.entity.Order();
+        order.setOrderId(orderId);
+        order.setTransactionId(paymentResponseAsync.getTransactionId());
+        order.setPaymentId(paymentResponseAsync.getPaymentId());
+        order.setPaymentCategory(paymentResponseAsync.getPaymentCategory());
+        order.setFinalAmount(paymentResponseAsync.getFinalAmount());
+        order.setOrderTimeStamp(CommonUtils.getTimeStamp());
+        return order;
+    }
+
+    public OrderResponseAsync convertOrderEntityToOrderAsync(com.bookmymovie.order.entity.Order orderEntity, OrderResponseAsync async) {
+        async.setTransactionId(orderEntity.getTransactionId());
+        async.setOrderId(orderEntity.getOrderId());
+        async.setPaymentConfirmation(Boolean.TRUE);
+        async.setPaymentCategory(orderEntity.getPaymentCategory());
+        async.setFinalAmount(orderEntity.getFinalAmount());
+        async.setOrderTimeStamp(orderEntity.getOrderTimeStamp());
+        return async;
     }
 
     enum PaymentMode {

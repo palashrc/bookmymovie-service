@@ -1,10 +1,11 @@
 package com.bookmymovie.order.service;
 
 import com.bookmymovie.core.error.PaymentProcessException;
-import com.bookmymovie.core.util.CommonUtils;
 import com.bookmymovie.order.constant.CommonConstants;
 import com.bookmymovie.order.constant.ExceptionConstants;
+import com.bookmymovie.order.converter.OrderConverter;
 import com.bookmymovie.order.helper.StatusMapper;
+import com.bookmymovie.order.metrics.MetricsContainerService;
 import com.bookmymovie.order.model.OrderResponseAsync;
 import com.bookmymovie.order.model.PaymentResponseAsync;
 import com.bookmymovie.order.repository.OrderRepository;
@@ -23,6 +24,8 @@ import java.util.UUID;
 @Slf4j
 public class OrderAsyncService {
 
+    private String orderId;
+
     @Value("${orch.service.async.url}")
     String orchServiceAsyncUrl;
 
@@ -30,10 +33,16 @@ public class OrderAsyncService {
     private OrderRepository orderRepository;
 
     @Autowired
+    private OrderConverter orderConverter;
+
+    @Autowired
     private StatusMapper statusMapper;
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private MetricsContainerService metricsContainerService;
 
     public PaymentResponseAsync processAsyncOrder(PaymentResponseAsync paymentResponseAsync) {
         log.info("Payment Microservice Asynchronous Response: " + paymentResponseAsync);
@@ -43,25 +52,9 @@ public class OrderAsyncService {
                 log.error("Payment Processing Failed!");
                 throw new PaymentProcessException();
             }
-            String orderId = init();
-            com.bookmymovie.order.entity.Order order = new com.bookmymovie.order.entity.Order();
-            order.setOrderId(orderId);
-            order.setTransactionId(paymentResponseAsync.getTransactionId());
-            order.setPaymentId(paymentResponseAsync.getPaymentId());
-            order.setPaymentCategory(paymentResponseAsync.getPaymentCategory());
-            order.setFinalAmount(paymentResponseAsync.getFinalAmount());
-            order.setOrderTimeStamp(CommonUtils.getTimeStamp());
-            com.bookmymovie.order.entity.Order orderEntityRes = orderRepository.save(order);
-
-            async.setTransactionId(orderEntityRes.getTransactionId());
-            async.setOrderId(orderEntityRes.getOrderId());
-            async.setPaymentConfirmation(Boolean.TRUE);
-            async.setPaymentCategory(orderEntityRes.getPaymentCategory());
-            async.setFinalAmount(orderEntityRes.getFinalAmount());
-            async.setOrderTimeStamp(orderEntityRes.getOrderTimeStamp());
-
-            statusMapper.mapSuccessCodeMsg(async);
-
+            init();
+            com.bookmymovie.order.entity.Order orderEntityRes = orderRepository.save(orderConverter.convertPaymentToOrderEntity(paymentResponseAsync, orderId));
+            statusMapper.mapSuccessCodeMsg(orderConverter.convertOrderEntityToOrderAsync(orderEntityRes, async));
         } catch(PaymentProcessException ex) {
             log.error("PaymentProcessException Occurs!");
             ex.printStackTrace();
@@ -86,15 +79,16 @@ public class OrderAsyncService {
             } catch(Exception ex) {
                 log.error("Exception Occurs for Orchestrator Microservice Async Connectivity!");
                 ex.printStackTrace();
+                metricsContainerService.incrementOfOrderToOrchErrCountMetric();
             }
         }
         return paymentResponseAsync;
     }
 
-    private String init() {
+    private void init() {
         UUID uuid = UUID.randomUUID();
         String orderId = CommonConstants.ORDER_PREFIX + uuid.toString().replaceAll("-","");
-        return orderId;
+        this.orderId = orderId;
     }
 
     private void end() {
