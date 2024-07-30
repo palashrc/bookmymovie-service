@@ -36,7 +36,7 @@ logging:
 
 management:
   server:
-    port: 7085
+    port: 7086
   endpoints:
     metrics:
       enabled: true

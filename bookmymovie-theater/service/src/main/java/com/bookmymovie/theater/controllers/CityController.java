@@ -41,4 +41,19 @@ public class CityController {
     @ResponseBody
     @TrackExecutionTime
     public CityResponse updateCityOperational(@RequestBody CityRequest cityRequest) { return cityService.updateCityOperational(cityRequest); }
+
+    @GetMapping("/usr/city-all")
+    @ResponseBody
+    @TrackExecutionTime
+    public CityResponse getCityForUser() { return cityService.getCityForUser(); }
+
+    @PostMapping("/usr/city-by-id")
+    @ResponseBody
+    @TrackExecutionTime
+    public CityResponse getCityByIdForUser(@RequestBody CityRequest cityRequest) { return cityService.getCityByIdForUser(cityRequest); }
+
+    @PostMapping("/usr/city-by-name")
+    @ResponseBody
+    @TrackExecutionTime
+    public CityResponse getCityByNameForUser(@RequestBody CityRequest cityRequest) { return cityService.getCityByNameForUser(cityRequest); }
 }

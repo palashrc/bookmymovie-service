@@ -32,9 +32,17 @@ public class MovieShow {
     @Field(name = "TheaterId")
     private Long theaterId;
 
+    @JsonProperty("theaterName")
+    @Field(name = "TheaterName")
+    private String theaterName;
+
     @JsonProperty("screenId")
     @Field(name = "ScreenId")
     private Long screenId;
+
+    @JsonProperty("screenName")
+    @Field(name = "ScreenName")
+    private String screenName;
 
     @JsonProperty("showTimes")
     @Field(name = "ShowTimes")

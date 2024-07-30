@@ -41,7 +41,7 @@ public class Order {
 
     @JsonProperty("finalAmount")
     @Field(name = "FinalAmount")
-    private BigDecimal finalAmount;
+    private String finalAmount;
 
     @JsonProperty("orderTimeStamp")
     @Field(name = "OrderTimeStamp")

@@ -35,6 +35,9 @@ public class OrderService {
     private String paymentServiceUrl;
 
     @Autowired
+    private DiscountService discountService;
+
+    @Autowired
     private OrderConverter orderConverter;
 
     @Autowired
@@ -51,7 +54,10 @@ public class OrderService {
         OrderResponseAck ack = new OrderResponseAck();
         try {
             init(orderRequest, ack);
-            PaymentRequest paymentRequest = orderConverter.convertOrderToPayment(orderRequest, OrderUtils.calculateFinalAmount(orderRequest, new BigDecimal(convenienceFeesPercentage)));
+            BigDecimal totalAmount = OrderUtils.calculateTotalAmount(orderRequest);
+            BigDecimal totalAmountAfterDiscounts = discountService.applyDiscounts(orderRequest, totalAmount);
+            BigDecimal finalPayableAmount = OrderUtils.calculateConvenienceFees(totalAmountAfterDiscounts, new BigDecimal(convenienceFeesPercentage));
+            PaymentRequest paymentRequest = orderConverter.convertOrderToPayment(orderRequest, finalPayableAmount);
             statusMapper.mapAckCode(ack);
             statusMapper.mapSuccessCodeMsg(ack);
             Thread thread = new Thread(new PaymentAsyncProcessServiceThread(paymentRequest));

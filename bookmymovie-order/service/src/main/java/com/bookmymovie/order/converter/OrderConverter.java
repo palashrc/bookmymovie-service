@@ -77,7 +77,7 @@ public class OrderConverter {
         order.setTransactionId(paymentResponseAsync.getTransactionId());
         order.setPaymentId(paymentResponseAsync.getPaymentId());
         order.setPaymentCategory(paymentResponseAsync.getPaymentCategory());
-        order.setFinalAmount(paymentResponseAsync.getFinalAmount());
+        order.setFinalAmount(paymentResponseAsync.getFinalAmount().toString());
         order.setOrderTimeStamp(CommonUtils.getTimeStamp());
         return order;
     }
@@ -87,7 +87,7 @@ public class OrderConverter {
         async.setOrderId(orderEntity.getOrderId());
         async.setPaymentConfirmation(Boolean.TRUE);
         async.setPaymentCategory(orderEntity.getPaymentCategory());
-        async.setFinalAmount(orderEntity.getFinalAmount());
+        async.setFinalAmount(new BigDecimal(orderEntity.getFinalAmount()));
         async.setOrderTimeStamp(orderEntity.getOrderTimeStamp());
         return async;
     }

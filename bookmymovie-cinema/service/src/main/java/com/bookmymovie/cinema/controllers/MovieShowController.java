@@ -20,4 +20,14 @@ public class MovieShowController {
     @ResponseBody
     @TrackExecutionTime
     public MovieShowResponse createMovie(@RequestBody MovieShowRequest movieShowRequest) { return movieShowService.createMovieShow(movieShowRequest); }
+
+    @PostMapping("/movieshow-operation-configure")
+    @ResponseBody
+    @TrackExecutionTime
+    public MovieShowResponse updateMovieShowOperational(@RequestBody MovieShowRequest movieShowRequest) { return movieShowService.updateMovieShowOperational(movieShowRequest); }
+
+    @PostMapping("/movieshow-by-citymovie")
+    @ResponseBody
+    @TrackExecutionTime
+    public MovieShowResponse getMovieShowByCityAndMovie(@RequestBody MovieShowRequest movieShowRequest) { return movieShowService.getMovieShowByCityAndMovie(movieShowRequest); }
 }

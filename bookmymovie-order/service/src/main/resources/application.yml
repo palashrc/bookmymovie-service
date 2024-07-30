@@ -69,6 +69,13 @@ convenience:
   fees:
     percentage: 3
 
+discounts:
+  rules:
+    afternoonShow:
+      startHour: 12
+      endHour: 15
+      percentage: 10
+
 acknowledgement:
   code: ACK
 

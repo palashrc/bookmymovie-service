@@ -19,7 +19,9 @@ public class MovieShowConverter {
         movieShowEntity.setMovieId(movieShowModel.getMovieId());
         movieShowEntity.setCityId(movieShowModel.getCityId());
         movieShowEntity.setTheaterId(movieShowModel.getTheaterId());
+        movieShowEntity.setTheaterName(movieShowModel.getTheaterName());
         movieShowEntity.setScreenId(movieShowModel.getScreenId());
+        movieShowEntity.setScreenName(movieShowModel.getScreenName());
         movieShowEntity.setShowTimes(movieShowModel.getShowTimes());
         movieShowEntity.setOperational(movieShowModel.getOperational());
         return movieShowEntity;
@@ -35,7 +37,9 @@ public class MovieShowConverter {
         movieShowModel.setMovieId(movieShowEntity.getMovieId());
         movieShowModel.setCityId(movieShowEntity.getCityId());
         movieShowModel.setTheaterId(movieShowEntity.getTheaterId());
+        movieShowModel.setTheaterName(movieShowEntity.getTheaterName());
         movieShowModel.setScreenId(movieShowEntity.getScreenId());
+        movieShowModel.setScreenName(movieShowEntity.getScreenName());
         movieShowModel.setShowTimes(movieShowEntity.getShowTimes());
         movieShowModel.setOperational(movieShowEntity.getOperational());
         return movieShowModel;

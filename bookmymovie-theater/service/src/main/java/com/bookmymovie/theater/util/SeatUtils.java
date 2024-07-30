@@ -24,7 +24,7 @@ public class SeatUtils {
                 seatEntity.setSeatNumber(screen.getRowNames().get(r).trim() + c);
                 seatEntity.setSeatType(screen.getRowNameTypeMap().get(screen.getRowNames().get(r).trim()));
                 seatEntity.setSeatPrice(screen.getRowTypePriceMap().get(screen.getRowNameTypeMap().get(screen.getRowNames().get(r).trim())));
-                seatEntity.setOperational(Boolean.FALSE);
+                seatEntity.setOperational(Boolean.TRUE);
                 seatEntityList.add(seatEntity);
             }
             System.out.println();

@@ -1,19 +1,17 @@
 package com.bookmymovie.theater.service;
 
 import com.bookmymovie.core.error.CoversionException;
+import com.bookmymovie.core.error.RecordNotFoundException;
 import com.bookmymovie.theater.converter.TheaterConverter;
-import com.bookmymovie.theater.model.Theater;
+import com.bookmymovie.theater.model.*;
 import com.bookmymovie.theater.constant.ExceptionConstants;
 import com.bookmymovie.theater.helper.StatusMapper;
-import com.bookmymovie.theater.model.TheaterRequest;
-import com.bookmymovie.theater.model.TheaterResponse;
 import com.bookmymovie.theater.repository.TheaterRepository;
 import com.google.cloud.datastore.DatastoreException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 @Slf4j
@@ -51,14 +49,25 @@ public class TheaterService {
         return theaterResponse;
     }
 
-    public TheaterResponse getTheater() {
+    public TheaterResponse updateTheaterOperational(TheaterRequest theaterRequest) {
         TheaterResponse theaterResponse = new TheaterResponse();
         try {
-            Iterable<com.bookmymovie.theater.entity.Theater> theaterIterable = theaterRepository.findAll();
-            List<com.bookmymovie.theater.entity.Theater> theaterList = Streamable.of(theaterIterable).toList();
-            List<Theater> theaterListRes = theaterList.stream().map(com.bookmymovie.theater.model.Theater::new).toList();
-            theaterResponse.getTheaters().addAll(theaterListRes);
+            com.bookmymovie.theater.entity.Theater theaterRes = theaterRepository.findById(theaterRequest.getTheater().getTheaterId()).get();
+            if(ObjectUtils.isEmpty(theaterRes)) {
+                throw new RecordNotFoundException();
+            }
+            theaterRes.setOperational(theaterRequest.getTheater().getOperational());
+            com.bookmymovie.theater.entity.Theater theaterResUpdated = theaterRepository.save(theaterRes);
+            theaterResponse.getTheaters().add(theaterConverter.convertEntityToModel(theaterResUpdated));
             statusMapper.mapSuccessCodeMsg(theaterResponse);
+        } catch(RecordNotFoundException ex) {
+            log.error("RecordNotFoundException Occurs!");
+            ex.printStackTrace();
+            theaterResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.RECORD_NOT_FOUND_EXCEPTION_TYPE));
+        } catch(CoversionException ex) {
+            log.error("CoversionException Occurs!");
+            ex.printStackTrace();
+            theaterResponse.getErrors().add(statusMapper.mapErrorCodeMsg(ExceptionConstants.CONVERSION_EXCEPTION_TYPE));
         } catch(DatastoreException ex) {
             log.error("DatastoreException Occurs!");
             ex.printStackTrace();
