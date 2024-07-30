@@ -53,7 +53,7 @@ public class Screen {
 
     @JsonProperty("rowTypePriceMap")
     @Field(name = "RowTypePriceMap")
-    Map<String, String> rowTypePriceMap;
+    private Map<String, String> rowTypePriceMap;
 
     @JsonProperty("operational")
     @Field(name = "Operational")
