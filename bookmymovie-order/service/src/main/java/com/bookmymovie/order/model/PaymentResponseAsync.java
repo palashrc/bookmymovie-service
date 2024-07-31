@@ -22,7 +22,7 @@ public class PaymentResponseAsync {
 
     private String paymentCategory;
 
-    private BigDecimal finalAmount;
+    private String finalAmount;
 
     private LocalDateTime paymentTimeStamp;
 

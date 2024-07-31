@@ -25,7 +25,7 @@ public class OrderConverter {
 
         com.bookmymovie.order.model.payment.Payment payment = new com.bookmymovie.order.model.payment.Payment();
         payment.setPaymentCategory(orderRequest.getOrder().getPayment().getPaymentCategory());
-        payment.setFinalAmount(finalAmount);
+        payment.setFinalAmount(finalAmount.toString());
 
         if(orderRequest.getOrder().getPayment().getPaymentCategory().equalsIgnoreCase(PaymentMode.UPI.toString())) {
             if(orderRequest.getOrder().getPayment().getUpi() != null) {
@@ -77,7 +77,7 @@ public class OrderConverter {
         order.setTransactionId(paymentResponseAsync.getTransactionId());
         order.setPaymentId(paymentResponseAsync.getPaymentId());
         order.setPaymentCategory(paymentResponseAsync.getPaymentCategory());
-        order.setFinalAmount(paymentResponseAsync.getFinalAmount().toString());
+        order.setFinalAmount(paymentResponseAsync.getFinalAmount());
         order.setOrderTimeStamp(CommonUtils.getTimeStamp());
         return order;
     }

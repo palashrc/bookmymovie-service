@@ -16,7 +16,7 @@ public class Payment {
 
     private String paymentCategory;
 
-    private BigDecimal finalAmount;
+    private String finalAmount;
 
     private UPI upi;
 

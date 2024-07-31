@@ -33,7 +33,7 @@ public class Payment {
 
     @JsonProperty("finalAmount")
     @Field(name = "FinalAmount")
-    private BigDecimal finalAmount;
+    private String finalAmount;
 
     @JsonProperty("paymentTimeStamp")
     @Field(name = "PaymentTimeStamp")
