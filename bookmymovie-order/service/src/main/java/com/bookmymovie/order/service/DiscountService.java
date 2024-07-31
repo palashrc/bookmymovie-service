@@ -24,25 +24,23 @@ public class DiscountService {
     private String afternoonDiscountPercentage;
 
     public BigDecimal applyDiscounts(OrderRequest orderRequest, BigDecimal totalAmount) {
-        totalAmount = applyAfternoonDiscount(orderRequest, totalAmount);
+        totalAmount = isAfternoonDiscountApplicable(orderRequest) ? applyAfternoonDiscount(orderRequest, totalAmount) : totalAmount;
         log.info("Total Amount after all Discounts: " + totalAmount);
         return totalAmount;
     }
 
     private BigDecimal applyAfternoonDiscount(OrderRequest orderRequest, BigDecimal totalAmount) {
+        totalAmount = totalAmount.subtract(calculateAfternoonDiscount(totalAmount, new BigDecimal(afternoonDiscountPercentage)));
+        return totalAmount;
+    }
+
+    private Boolean isAfternoonDiscountApplicable(OrderRequest orderRequest) {
+        Boolean isApplicable = Boolean.FALSE;
         String showDate = orderRequest.getOrder().getShowdate();
         LocalDateTime convertedDate = CommonUtils.getConvertedLocalDateTime(showDate);
         int startHour = Integer.parseInt(afternoonDiscountStartHour);
         int endHour = Integer.parseInt(afternoonDiscountEndHour);
         log.info("Afternoon StartHour: " + afternoonDiscountStartHour + " Afternoon EndHour: " + afternoonDiscountEndHour);
-        if(isAfternoonDiscountApplicable(convertedDate, startHour, endHour)) {
-            totalAmount = totalAmount.subtract(calculateAfternoonDiscount(totalAmount, new BigDecimal(afternoonDiscountPercentage)));
-        }
-        return totalAmount;
-    }
-
-    private Boolean isAfternoonDiscountApplicable(LocalDateTime convertedDate, int startHour, int endHour) {
-        Boolean isApplicable = Boolean.FALSE;
         Boolean isAfternoonBegin = convertedDate.getHour() > startHour || convertedDate.getHour() == startHour;
         Boolean isAfternoonEnd = convertedDate.getHour() < endHour || convertedDate.getHour() == endHour;
         if(isAfternoonBegin && isAfternoonEnd) {
