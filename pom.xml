@@ -10,6 +10,7 @@
   <url>http://maven.apache.org</url>
   <modules>
     <module>bookmymovie-core</module>
+	<module>bookmymovie-orchestrator-admin</module>
     <module>bookmymovie-orchestrator</module>
 	<module>bookmymovie-theater</module>
 	<module>bookmymovie-cinema</module>

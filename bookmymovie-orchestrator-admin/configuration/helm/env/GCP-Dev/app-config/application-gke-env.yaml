@@ -1,0 +1,93 @@
+spring:
+  application:
+    name: bookmymovie-orchestrator-admin
+    version: 1.0.0-SNAPSHOT
+  profiles:
+    active: logs-stdout, local
+    group:
+      my-local: local
+  lifecycle:
+    timeout-per-shutdown-phase: 1m
+  cloud:
+    gcp:
+      core:
+        enabled: true
+      datastore:
+        enabled: true
+        namespace: bookmymovie-namespace
+        project-id: bookmymovie-db
+        emulator:
+          enabled: true
+          namespace: bookmymovie-namespace
+          project-id: bookmymovie-db
+          port: 9090
+          data-dir: F:\Program-Files\Firestore-Emulator-Data-Dir
+      active: logs-stdout-json-gke
+      grourp:
+        my-local: local
+
+server:
+  port: 8090
+  shutdown: graceful
+
+logging:
+  level:
+    root: INFO
+
+management:
+  server:
+    port: 7090
+  endpoints:
+    metrics:
+      enabled: true
+    web:
+      exposure:
+        include: health,metrics
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      stackdriver:
+        enabled: true
+      prometheus:
+        enabled: false
+
+aspect:
+  enabled: true
+
+seat:
+  book:
+    limit: 10
+
+order:
+  service:
+    url: http://127.0.0.1:80/order/order-new
+
+acknowledgement:
+  code: ACK
+
+success:
+  code: 255
+  msg: 'Successful!'
+
+error.code.map: {\
+exception:'455',\
+coversionException:'456',\
+recordNotFoundException:'457',\
+datastoreException:'458',\
+bookingException:'462'\
+}
+
+error.msg.map: {\
+exception:'Failed!',\
+coversionException:'Conversion Error!',\
+recordNotFoundException:'Invalid Record!',\
+datastoreException:'DB Error!',\
+bookingException:'Booking Failed!'\
+}
+
+bmm:
+  metrics:
+    tag:
+      env: DEV

@@ -1,0 +1,17 @@
+logging:
+  level:
+    root: INFO
+
+management:
+  metrics:
+    export:
+      stackdriver:
+        enabled: false
+
+spring:
+  cloud:
+    gcp:
+      core:
+        enabled: false
+      trace:
+        enabled: false
