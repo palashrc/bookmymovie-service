@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "3bee5764-0f8b-4781-8d42-a8813a7b7ae5",
+		"name": "Bookmymovie-Cinema",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "movie-add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"movie\": {\r\n        \"movieName\": \"Deadpool & Wolverine\",\r\n        \"movieCategory\": \"Adventure\",\r\n        \"movieDescription\": \"Marvel Studios Deadpool & Wolverine delivers the ultimate, iconic, cinematic throwdown.\",\r\n        \"movieTrailerPath\": \"/home/movies/deadpool.mov\",\r\n        \"movieCertificate\": \"UA\",\r\n        \"movieDuration\": \"2h-15m\",\r\n        \"movieCasts\": [\r\n            \"Hugh Jackman - Logan\",\r\n            \"Mathew - Paradox\",\r\n            \"Rob Delany - Peter\"\r\n        ],\r\n        \"movieCrews\": [\r\n            \"Shawn Levy - Director\",\r\n            \"Kevin Feige - Producer\",\r\n            \"George - Cinematographer\"\r\n        ],\r\n        \"operational\": false\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/movie/movie-new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"movie",
+						"movie-new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movieshow-add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"movieshow\": {\r\n        \"movieId\": 4996180836614144,\r\n        \"cityId\": 5629499534213120,\r\n        \"theaterId\": 5348024557502464,\r\n        \"theaterName\": \"Cinepolis-Lake Mall\",\r\n        \"screenId\": 6473924464345088,\r\n        \"screenName\": \"Screen-1\",\r\n        \"showTimes\": [\r\n            \"01-08-2024 11:30:00 AM\",\r\n            \"01-08-2024 02:45:00 PM\",\r\n            \"01-08-2024 06:30:00 PM\"\r\n        ],\r\n        \"operational\": false\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/movieshow/movieshow-new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"movieshow",
+						"movieshow-new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movie-by-id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"movie\": {\r\n        \"movieId\": 4609152743636992\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/movie/movie-by-id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"movie",
+						"movie-by-id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movie-by-id-usr",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"movie\": {\r\n        \"movieId\": 4609152743636992\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/movie/usr/movie-by-id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"movie",
+						"usr",
+						"movie-by-id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movieshow-operation-configure",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"movieshow\": {\r\n        \"movieShowId\": 6122080743456768,\r\n        \"operational\": true\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/movieshow/movieshow-operation-configure",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"movieshow",
+						"movieshow-operation-configure"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movie-operation-configure",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"movie\": {\r\n        \"movieId\": 4996180836614144,\r\n        \"operational\": true\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/movie/movie-operation-configure",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"movie",
+						"movie-operation-configure"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movieshow-by-citymovie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"movieshow\": {\r\n        \"movieId\": 4996180836614144,\r\n        \"cityId\": 5629499534213120\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/movieshow/movieshow-by-citymovie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"movieshow",
+						"movieshow-by-citymovie"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

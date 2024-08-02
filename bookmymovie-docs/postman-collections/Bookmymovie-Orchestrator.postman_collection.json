@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "1e9964d2-8d21-41aa-bf72-d7eb1d0520f7",
+		"name": "Bookmymovie-Orchestrator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "book-new",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"booking\": {\r\n        \"viewerId\": 5559130790035456,\r\n        \"firstName\": \"Mukesh\",\r\n        \"lastName\": \"Sharma\",\r\n        \"mobile\": \"8420553388\",\r\n        \"email\": \"mukesh.sharma@rediff.com\",\r\n        \"movieId\": 4996180836614144,\r\n        \"movieName\": \"Deadpool & Wolverine\",\r\n        \"movieCertificate\": \"UA\",\r\n        \"theaterId\": 5348024557502464,\r\n        \"theaterName\": \"Cinepolis-Lake Mall\",\r\n        \"screenId\": 6473924464345088,\r\n        \"screenName\": \"Screen-1\",\r\n        \"showdate\": \"01-08-2024 02:45:00 PM\",\r\n        \"seatBook\": [\r\n            {\r\n                \"seatId\": 4644337115725824,\r\n                \"seatNumber\": \"A1\",\r\n                \"seatType\": \"Royal\",\r\n                \"seatPrice\": \"200\"\r\n            },\r\n            {\r\n                \"seatId\": 5770237022568448,\r\n                \"screenId\": 6403555720167424,\r\n                \"seatNumber\": \"A2\",\r\n                \"seatType\": \"Royal\",\r\n                \"seatPrice\": \"200\"\r\n            }\r\n        ],\r\n        \"payment\": {\r\n            \"paymentCategory\": \"UPI\",\r\n            \"upi\": {\r\n                \"upiId\": \"mukesh.sr@okaxis\",\r\n                \"upiName\": \"Gpay\"\r\n            }\r\n        }\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/orch/book-new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"orch",
+						"book-new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "book-new-dev",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"booking\": {\r\n        \"viewerId\": 6403555720167424,\r\n        \"firstName\": \"Suman\",\r\n        \"lastName\": \"kalyan\",\r\n        \"mobile\": \"8420666666\",\r\n        \"email\": \"suman.kalyan@gmail.com\",\r\n        \"movieId\": 4925812092436480,\r\n        \"movieName\": \"Deadpool & Wolverine\",\r\n        \"movieCertificate\": \"UA\",\r\n        \"theaterId\": 4925812092436480,\r\n        \"theaterName\": \"ABC\",\r\n        \"screenId\": 6403555720167424,\r\n        \"screenName\": \"Screen-2\",\r\n        \"showdate\": \"25-08-2024\",\r\n        \"seatBook\": [\r\n            {\r\n                \"seatId\": 4996180836614144,\r\n                \"seatNumber\": \"A1\",\r\n                \"seatType\": \"Royal\",\r\n                \"seatPrice\": \"200\"\r\n            },\r\n            {\r\n                \"seatId\": 6122080743456768,\r\n                \"screenId\": 6403555720167424,\r\n                \"seatNumber\": \"A2\",\r\n                \"seatType\": \"Royal\",\r\n                \"seatPrice\": \"200\"\r\n            }\r\n        ],\r\n        \"payment\": {\r\n            \"paymentCategory\": \"UPI\",\r\n            \"upi\": {\r\n                \"upiId\": \"xyz@okaxis\",\r\n                \"upiName\": \"Gpay\"\r\n            }\r\n        }\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:80/orch/book-new",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "80",
+					"path": [
+						"orch",
+						"book-new"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

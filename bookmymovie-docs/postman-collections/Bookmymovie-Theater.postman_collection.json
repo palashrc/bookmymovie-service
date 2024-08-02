@@ -1,0 +1,401 @@
+{
+	"info": {
+		"_postman_id": "8834f986-dbb8-4fe0-a498-5ea445490ac2",
+		"name": "Bookmymovie-Theater",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "city-all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/ecmascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8082/city/city-all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"city",
+						"city-all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "city-add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": {\r\n        \"cityName\": \"Raiganj\",\r\n        \"cityCode\": \"RJ\",\r\n        \"operational\": false\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/city/city-new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"city",
+						"city-new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "city-by-id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": {\r\n        \"cityId\": 5629499534213120\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/city/city-by-id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"city",
+						"city-by-id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "city-by-name",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": {\r\n        \"cityName\": \"Raiganj\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/city/city-by-name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"city",
+						"city-by-name"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "city-operation-configure",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": {\r\n        \"cityId\": 5066549580791808,\r\n        \"operational\": false\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/city/city-operation-configure",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"city",
+						"city-operation-configure"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "theater-add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"theater\": {\r\n        \"cityId\": 5629499534213120,\r\n        \"theaterName\": \"Cinepolis-Lake Mall\",\r\n        \"addressLine\": \"Lake Mall. 5th Floor. Rash Behari Avenue. Kolkata. WB. 700126.\",\r\n        \"availableFacilities\": [\r\n            \"F&B\",\r\n            \"MTicket\",\r\n            \"Wheel Chair Facility\",\r\n            \"Parking Facility\",\r\n            \"Food Court\"\r\n        ],\r\n        \"operational\": false\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/theater/theater-new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"theater",
+						"theater-new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "theater-operation-configure",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"theater\": {\r\n        \"theaterId\": 5348024557502464,\r\n        \"operational\": true\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/theater/theater-operation-configure",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"theater",
+						"theater-operation-configure"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "screen-operation-configure",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"screen\": {\r\n        \"screenId\": 6473924464345088,\r\n        \"operational\": true\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/screen/screen-operation-configure",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"screen",
+						"screen-operation-configure"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "screen-add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"screen\": {\r\n        \"theaterId\": 5348024557502464,\r\n        \"screenName\": \"Screen-1\",\r\n        \"showTimes\": [\r\n            \"11:30:00 AM\",\r\n            \"02:45:00 PM\",\r\n            \"06:30:00 PM\",\r\n            \"09:15:00 PM\"\r\n        ],\r\n        \"totalRows\": 4,\r\n        \"numberOfSeatsInEachRow\": 5,\r\n        \"rowNames\": [\r\n            \"A\",\r\n            \"B\",\r\n            \"C\",\r\n            \"D\"\r\n        ],\r\n        \"rowNameTypeMap\": {\r\n            \"A\": \"Royal\",\r\n            \"B\": \"Royal\",\r\n            \"C\": \"Club\",\r\n            \"D\": \"Executive\"\r\n        },\r\n        \"rowTypePriceMap\": {\r\n            \"Royal\": \"200\",\r\n            \"Club\": \"160\",\r\n            \"Executive\": \"100\"\r\n        },\r\n        \"operational\": false\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/screen/screen-new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"screen",
+						"screen-new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "seat-add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"seat\": {\r\n        \"screenId\": 6473924464345088\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/seat/seats-new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"seat",
+						"seats-new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "city-all-usr",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8082/city/usr/city-all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"city",
+						"usr",
+						"city-all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "city-by-id-usr",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": {\r\n        \"cityId\": 5066549580791808\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/city/usr/city-by-id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"city",
+						"usr",
+						"city-by-id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "city-by-name-usr",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": {\r\n        \"cityName\": \"Pune\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/city/usr/city-by-name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"city",
+						"usr",
+						"city-by-name"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
