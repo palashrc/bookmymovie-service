@@ -27,7 +27,7 @@ public class ViewerConverter {
         viewerEntity.setCity(viewerModel.getCity());
         viewerEntity.setAddressLine(viewerModel.getAddressLine());
         viewerEntity.setPinCode(viewerModel.getPinCode());
-        viewerEntity.setProfileActive(viewerModel.getProfileActive());
+        viewerEntity.setProfileActive(Boolean.TRUE);
         return viewerEntity;
     }
 

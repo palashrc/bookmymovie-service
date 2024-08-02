@@ -39,6 +39,10 @@ public class MovieShowService {
         try {
             com.bookmymovie.cinema.entity.MovieShow movieShowEntity = movieShowConverter.convertModelToEntity(movieShowRequest.getMovieshow());
             com.bookmymovie.cinema.entity.MovieShow movieShowEntityRes = movieShowRepository.save(movieShowEntity);
+            if(!ObjectUtils.isEmpty(movieShowEntityRes)) {
+                // fetch all the seats associated with movieShowEntityRes.getScreenId() created/enabled in the System
+                // create MovieShowSeats records using: movieShowId, screenId, showTime, fetched seats
+            }
             movieShowResponse.getMovieshow().add(movieShowConverter.convertEntityToModel(movieShowEntityRes));
             statusMapper.mapSuccessCodeMsg(movieShowResponse);
         } catch(CoversionException ex) {
@@ -102,6 +106,8 @@ public class MovieShowService {
                                                                                  .filter(c -> BooleanUtils.isTrue(c.getOperational()))
                                                                                  .collect(Collectors.toList());
                     if(!CollectionUtils.isEmpty(movieShowFilteredModelRes)) {
+                        // fetch all the seats (not booked) from MovieShowSeats using: movieShowId, screenId, showTime
+                        // add above response in movieShowFilteredModelRes
                         movieShowResponse.getMovieshow().addAll(movieShowFilteredModelRes);
                     }
                 }
