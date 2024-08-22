@@ -17,7 +17,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <jacoco.version>0.8.6</jacoco.version>
+        <jacoco.version>0.8.8</jacoco.version> <!-- for Java17 need this Jacoco version -->
     </properties>
 
     <dependencies>
@@ -85,7 +85,10 @@
                     <excludes>
                         <exclude>**/*com/bookmymovie/theater/aspect/*.class</exclude>
                         <exclude>**/*com/bookmymovie/theater/constant/*.class</exclude>
-                        <exclude>**/*com/bookmymovie/theater/controllers/*.class</exclude>
+                        <exclude>**/*com/bookmymovie/theater/controllers/ScreenController.class</exclude>
+                        <exclude>**/*com/bookmymovie/theater/controllers/SeatController.class</exclude>
+                        <exclude>**/*com/bookmymovie/theater/controllers/SmokeTestController.class</exclude>
+                        <exclude>**/*com/bookmymovie/theater/controllers/TheaterController.class</exclude>
                         <exclude>**/*com/bookmymovie/theater/converter/*.class</exclude>
                         <exclude>**/*com/bookmymovie/theater/entity/*.class</exclude>
                         <exclude>**/*com/bookmymovie/theater/helper/*.class</exclude>
