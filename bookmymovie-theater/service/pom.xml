@@ -17,6 +17,7 @@
 
     <properties>
         <java.version>17</java.version>
+        <jacoco.version>0.8.6</jacoco.version>
     </properties>
 
     <dependencies>
@@ -75,6 +76,40 @@
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*com/bookmymovie/theater/aspect/*.class</exclude>
+                        <exclude>**/*com/bookmymovie/theater/constant/*.class</exclude>
+                        <exclude>**/*com/bookmymovie/theater/controllers/*.class</exclude>
+                        <exclude>**/*com/bookmymovie/theater/converter/*.class</exclude>
+                        <exclude>**/*com/bookmymovie/theater/entity/*.class</exclude>
+                        <exclude>**/*com/bookmymovie/theater/helper/*.class</exclude>
+                        <exclude>**/*com/bookmymovie/theater/model/*.class</exclude>
+                        <exclude>**/*com/bookmymovie/theater/repository/*.class</exclude>
+                        <exclude>**/*com/bookmymovie/theater/service/*.class</exclude>
+                        <exclude>**/*com/bookmymovie/theater/util/*.class</exclude>
+                        <exclude>**/*com/bookmymovie/theater/*.class</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
