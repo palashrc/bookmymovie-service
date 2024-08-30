@@ -1,0 +1,20 @@
+Bookmymovie:
+------------
+1. movieshow/movieshow-new, movieshow/movieshow-by-citymovie: Commented logics in MovieShowService...
+2. After receiving the successful Payment Async Response, details will be fetched from OrderRequestTracker DB Kind using TxnId and save it into Order DB Kind.
+3. After receiving the successful Payment Async Response, applied Discount will save it into Order DB Kind.
+4. PS Case Study Round:
+4.1. Print TxnId in each log.
+4.2. Hackers send 1million of Request in a second. How to handle before it reaches to Microservice echosystem.
+4.3. Relational DB TTL to handle Concurrent Requests using Pessimistic Lock Mechanism.
+4.4. Sending SMS notifications (after successful Booking) if Mobile Service Provider is down: DLQ.
+
+
+The default Resilience4j aspect order: Retry( CircuitBreaker( RateLimiter( TimeLimiter( Bulkhead( function)))))
+To design an architecture for a high-performance, low-latency application that will receive millions of requests per second. 
+2-Phase Commit Protocol (Prepare, Commit) is used to managed Transaction in Microservice Architecture where service communication mode is Synchronous.
+
+
+https://console.cloud.google.com/
+https://console.cloud.google.com/billing
+https://dev.to/jdxlabs/google-cloud-from-aws-5aa1
